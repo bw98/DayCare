@@ -92,7 +92,7 @@ public class Teacher extends Person implements Comparable<Teacher>{
 		int id = -1;
 		Date date = new Date();
 		int age = -1;
-		int credit = 0;
+		int credits = 0;
 		int classRoomNum =-1;
 		int groupNum = -1;
 		
@@ -109,7 +109,7 @@ public class Teacher extends Person implements Comparable<Teacher>{
 		}
 		
 		try {
-			credit = Integer.parseInt(tokens.get(2));
+			credits = Integer.parseInt(tokens.get(2));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
@@ -138,7 +138,7 @@ public class Teacher extends Person implements Comparable<Teacher>{
 		String phone = tokens.get(8);
 		String address = tokens.get(9);
 		
-		return new Teacher(id, age, credit, date, lastName, firstName, classRoomNum, groupNum, phone, address);
+		return new Teacher(id, age, credits, date, lastName, firstName, classRoomNum, groupNum, phone, address);
 	}
 	
 	public static String serialize(Teacher t) {
@@ -171,4 +171,10 @@ public class Teacher extends Person implements Comparable<Teacher>{
 	}
 
 
+	@Override
+	public String toString() {
+		String reString = super.toString();
+		reString += ", is a teacher having a credits of: " + this.getCredits();
+		return reString;
+	}
 }

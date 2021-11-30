@@ -27,10 +27,10 @@ public class TeacherPanel {
 		JTextField ageField = new JTextField();
 		ageField.setBounds(275,30,200,25);
 		
-		JLabel creditLabel = new JLabel("Gpa");
-		creditLabel.setBounds(75,60,200,25);
-		JTextField creditField = new JTextField();
-		creditField.setBounds(275,60,200,25);
+		JLabel creditsLabel = new JLabel("Gpa");
+		creditsLabel.setBounds(75,60,200,25);
+		JTextField creditsField = new JTextField();
+		creditsField.setBounds(275,60,200,25);
 		
 		JLabel dateLabel = new JLabel("Date");
 		dateLabel.setBounds(75,90,200,25);
@@ -78,7 +78,7 @@ public class TeacherPanel {
 					{
 						add(idField.getText());
 						add(ageField.getText());
-						add(creditField.getText());
+						add(creditsField.getText());
 						add(dateField.getText());
 						add(lastNameField.getText());
 						add(firstNameField.getText());
@@ -98,7 +98,7 @@ public class TeacherPanel {
 				
 				idField.setText("");
 				ageField.setText("");
-				creditField.setText("");
+				creditsField.setText("");
 				dateField.setText("");
 				lastNameField.setText("");
 				firstNameField.setText("");
@@ -114,8 +114,8 @@ public class TeacherPanel {
 		jPanel.add(idField);
 		jPanel.add(ageLabel);
 		jPanel.add(ageField);
-		jPanel.add(creditLabel);
-		jPanel.add(creditField);
+		jPanel.add(creditsLabel);
+		jPanel.add(creditsField);
 		jPanel.add(dateLabel);
 		jPanel.add(dateField);
 		jPanel.add(lastNameLabel);
