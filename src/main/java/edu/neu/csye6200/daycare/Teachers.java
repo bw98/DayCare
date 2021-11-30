@@ -88,4 +88,9 @@ public class Teachers implements Iterable<Person>{
 	public Iterator<Person> iterator() {
 		return ts.iterator();
 	}
+	
+	@Override 
+	public String toString() {
+		return ts.toString();
+	}
 }
