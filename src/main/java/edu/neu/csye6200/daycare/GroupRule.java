@@ -6,7 +6,7 @@ public class GroupRule extends AbstGroupRule{
 	private Map<Integer, List<Group>> groupMap;
 
 	@Override
-	public void assign(Student s, Teachers ts) {
+	public void assign(Student s, Teacher t) {
 		
 	}
 
