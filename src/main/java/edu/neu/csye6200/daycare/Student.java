@@ -11,12 +11,14 @@ public class Student extends Person implements Comparable<Student> {
 	private String parentLastName;
 	private String phone;
 	private String address;
+	private int studentId;
 	private double gpa;
 	
-	public Student(int age, double gpa, Date registerTime, String firstName, String lastName, String parentFirstName, String parentLastName, String phone, String address) {
+	public Student(int studentId, int age, double gpa, Date registerTime, String firstName, String lastName, String parentFirstName, String parentLastName, String phone, String address) {
 		super(age, firstName, lastName, registerTime);
 		this.setParentFirstName(parentFirstName);
 		this.setParentLastName(parentLastName);
+		this.studentId = studentId;
 		this.phone = phone;
 		this.address = address;
 		this.gpa = gpa;
@@ -24,42 +26,51 @@ public class Student extends Person implements Comparable<Student> {
 	
 	public static Student parseStudentFromString(List<String> tokens) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		int id = -1;
 		Date date = new Date();
 		int age = -1;
 		double gpa = 0;
 		
 		try {
-			age = Integer.parseInt(tokens.get(0));
+			id = Integer.parseInt(tokens.get(0));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			gpa = Double.parseDouble(tokens.get(1));
+			age = Integer.parseInt(tokens.get(1));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			date = df.parse(tokens.get(2));
+			gpa = Double.parseDouble(tokens.get(2));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			date = df.parse(tokens.get(3));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
-		String lastName = tokens.get(3);
-		String firstName = tokens.get(4);
-		String parentFirstName = tokens.get(5);
-		String parentLastName = tokens.get(6);
-		String phone = tokens.get(7);
-		String address = tokens.get(8);
+		String lastName = tokens.get(4);
+		String firstName = tokens.get(5);
+		String parentFirstName = tokens.get(6);
+		String parentLastName = tokens.get(7);
+		String phone = tokens.get(8);
+		String address = tokens.get(9);
 		
-		return new Student(age, gpa, date, lastName, firstName, parentLastName, parentFirstName, phone, address);
+		return new Student(id, age, gpa, date, lastName, firstName, parentLastName, parentFirstName, phone, address);
 	}
 	
 	public static String serialize(Student s) {
 		StringBuffer sBuffer = new StringBuffer();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
+		sBuffer.append(s.getStudentId());
+		sBuffer.append(',');
 		sBuffer.append(s.getAge());
 		sBuffer.append(',');
 		sBuffer.append(s.getGpa());
@@ -119,6 +130,14 @@ public class Student extends Person implements Comparable<Student> {
 	public void setParentLastName(String parentLastName) {
 		this.parentLastName = parentLastName;
 	}
+
+	public int getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
 	
 	@Override
 	public String toString() {
@@ -126,5 +145,4 @@ public class Student extends Person implements Comparable<Student> {
 		reString += ", is a student having a GPA of: " + gpa;
 		return reString;
 	}
-	
 }
