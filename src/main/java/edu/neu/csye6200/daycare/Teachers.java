@@ -3,7 +3,7 @@ package edu.neu.csye6200.daycare;
 import java.io.*;
 import java.util.*;
 
-public class Teachers implements Iterable<Person>{
+public class Teachers extends AbstTeachers{
 	private List<Person> ts;
 	
 	public Teachers() {
@@ -23,7 +23,7 @@ public class Teachers implements Iterable<Person>{
 	 * @param csvFile Put the file name here!!!
 	 */
 	public Teachers(String csvFile) {
-		this.ts = Teachers.parseTeachers(csvFile).asList();
+		this.ts = Teachers.parseTeachers(csvFile).toList();
 		
 	}
 	
@@ -60,10 +60,10 @@ public class Teachers implements Iterable<Person>{
 	}
 	
 	public static List<Person> asList(Teachers ts){
-		return ts.getTeachers();
+		return ts.toList();
 	}
 	
-	public List<Person> asList(){
+	public List<Person> toList(){
 		return this.getTeachers();
 	}
 	
@@ -84,7 +84,7 @@ public class Teachers implements Iterable<Person>{
 		return ts;
 	}
 
-	@Override
+
 	public Iterator<Person> iterator() {
 		return ts.iterator();
 	}
