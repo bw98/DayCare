@@ -3,7 +3,7 @@ package edu.neu.csye6200.daycare;
 import java.io.*;
 import java.util.*;
 
-public class Teachers {
+public class Teachers implements Iterable<Person>{
 	private List<Person> ts;
 	
 	public Teachers() {
@@ -82,5 +82,10 @@ public class Teachers {
 	
 	public List<Person> getTeachers(){
 		return ts;
+	}
+
+	@Override
+	public Iterator<Person> iterator() {
+		return ts.iterator();
 	}
 }
