@@ -14,21 +14,6 @@ import java.awt.BorderLayout;
 
 public class Menu {
 	
-	public class Item {
-		private String title;
-		private JPanel jPanel;
-		private ActionListener actionListener;
-		
-		Item(String title, JPanel jPanel) {
-			this.title = title;
-			this.jPanel = jPanel;
-		}
-		
-		public void setActionListener(ActionListener actionListener) {
-			this.actionListener = actionListener;
-		}
-	};
-	
 	private CardLayout cardLayout;
 	private JPanel mJPanel;
 	private JPanel btnPanel;
@@ -42,12 +27,12 @@ public class Menu {
 	}
 	
 	public boolean registerItem(Item item) {
-		if (item.actionListener == null) {
+		if (item.getActionListener() == null) {
 			item.setActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					cardLayout.show(mJPanel, item.title);
+					cardLayout.show(mJPanel, item.getTitle());
 				}
 				
 			});
@@ -74,10 +59,10 @@ public class Menu {
 		
 		// add buttons for all items
 		for (Item item : items) {
-			JButton btn = new JButton(item.title);
-			btn.addActionListener(item.actionListener);
+			JButton btn = new JButton(item.getTitle());
+			btn.addActionListener(item.getActionListener());
 			btnPanel.add(btn);
-			mJPanel.add(item.jPanel, item.title);
+			mJPanel.add(item.getjPanel(), item.getTitle());
 		}
 		
 		jFrame.add(btnPanel, BorderLayout.NORTH);
