@@ -15,6 +15,7 @@ public class Driver {
         Menu menu = new Menu();
         menu.registerItem((new StudentPanel()).toItem());
 //        menu.registerItem(new TeacherPanel().toItem());
-        menu.show();       
+        menu.registerItem((new StudentRenewPanel()).toItem());
+        menu.show();
     }
 }
