@@ -7,12 +7,14 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private Date registerTime;
+	private Date renewDate;
 	
-	public Person(int age, String firstName, String lastName, Date registerTime) {
+	public Person(int age, String firstName, String lastName, Date registerTime, Date renewDate) {
 		this.age = age;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.setRegisterTime(registerTime);
+		this.setRenewDate(renewDate);
 	}
 	
 	public int getAge() {
@@ -51,10 +53,17 @@ public class Person {
 	public static int compareByLastName(Person a, Person b) {
 		return a.getLastName().compareToIgnoreCase(b.getLastName());
 	}
+
+	public Date getRenewDate() {
+		return renewDate;
+	}
+
+	public void setRenewDate(Date renewDate) {
+		this.renewDate = renewDate;
+	}
 	
 	@Override
 	public String toString() {
 		return "Person: " + firstName + " " + lastName + ", age: " + age;
 	}
-
 }
