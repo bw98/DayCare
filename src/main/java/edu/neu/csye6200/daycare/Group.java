@@ -14,7 +14,7 @@ public class Group extends AbstGroup{
 		}
 	}
 
-	private int groupId;
+	private int groupId = -1;
 	private int size;
 	private int capacity;
 	private Teacher t;
@@ -22,19 +22,34 @@ public class Group extends AbstGroup{
 	
 	public Group(int capacity) {
 		this.capacity = capacity;
+		this.size = 0;
+		this.t = null;
+		this.ss = null;
 	}
 	
 	public Group(Teacher t, int capacity) {
 		this.setTeacher(t);
 		this.capacity = capacity;
+		this.size = 0;
+		this.ss = null;
 	}
 	
-	public Group(Teacher t, int capacity, Students ss) {
-		this.setTeacher(t);
-		this.capacity = capacity;
-		try {
-			
+	public Group(Teacher t, int capacity, Student[] ss) {
+		if(ss.length > capacity) {
+			System.err.println("Students exceeds the group size!");
+			this.t = null;
+			this.capacity = -1;
+			this.size = 0;
+			this.ss = null;
+			this.groupId = -1;
 		}
+		else {
+			this.setTeacher(t);
+			this.capacity = capacity;
+			this.size = ss.length;
+			this.ss = new Students(ss);
+		}
+		
 	}
 	
 	@Override
@@ -44,6 +59,7 @@ public class Group extends AbstGroup{
 		}
 		else {
 			this.ss.add(s);
+			this.size++;
 		}
 	}
 
