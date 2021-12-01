@@ -16,7 +16,7 @@ public class Teacher extends Person implements Comparable<Teacher>{
 	private int groupNum;
 	
 	public Teacher(int teacherId, int age, int credit, Date registerTime, String firstName, String lastName, int classRoomNum, int groupNum, String phone, String address) {
-		super(age, firstName, lastName, registerTime);
+		super(age, firstName, lastName, registerTime, null);
 		this.teacherId = teacherId;
 		this.phone = phone;
 		this.credits = credit;
@@ -90,7 +90,8 @@ public class Teacher extends Person implements Comparable<Teacher>{
 	public static Teacher parseTeacherFromString(List<String> tokens) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		int id = -1;
-		Date date = new Date();
+		Date date = null;
+		Date renewDate = null;
 		int age = -1;
 		int credits = 0;
 		int classRoomNum =-1;
@@ -130,7 +131,7 @@ public class Teacher extends Person implements Comparable<Teacher>{
 		}
 		
 		try {
-			groupNum = Integer.parseInt(tokens.get(2));
+			groupNum = Integer.parseInt(tokens.get(7));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}

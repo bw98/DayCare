@@ -5,12 +5,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class StudentRenewPanel {
 
@@ -18,20 +19,15 @@ public class StudentRenewPanel {
         jPanel = new JPanel();
         jPanel.setLayout(null);
 
-        // TODO: 何时获取最新数据，以及何时写入最新数据
-        // 目前的想法：点击 StudentRenew 按钮的时候，自动更新 students
-        //
         students = new ArrayList<Student>();
-        students.add(new Student(1, 30, 3.5, new Date(), "Nana", "O-yang", "baba1", "Yang", "18322215", "Boston Pdt"));
-        students.add(new Student(3, 19, 2.0, new Date(), "Jing", "Yang", "baba2", "Y", "110", "CA SD"));
-        //
+        readStudentsCSV();
 
         setTable();
 
         setInputLabelsAndFields();
 
         changeBtn = new JButton();
-        changeBtn.setBounds(75,550,200,25);
+        changeBtn.setBounds(75, 580, 200, 25);
         changeBtn.setText("Change");
         changeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,7 +40,7 @@ public class StudentRenewPanel {
         // Set delete button
         deleteBtn = new JButton();
         deleteBtn.setText("Delete");
-        deleteBtn.setBounds(275,550,200,25);
+        deleteBtn.setBounds(275, 580, 200, 25);
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -56,9 +52,81 @@ public class StudentRenewPanel {
         return new Item("Student Renew", jPanel);
     }
 
+    private void readStudentsCSV() {
+        students.clear();
+        SimpleDateFormat timeFt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+            Scanner inLine = new Scanner(new BufferedReader(new FileReader(studentCSVFile)));
+
+            while (inLine.hasNextLine()) {
+                String inputLine = inLine.nextLine();
+                Scanner in = new Scanner(inputLine);
+                in.useDelimiter(",");
+
+	            int studentId = in.nextInt();
+                int age = in.nextInt();
+                double gpa = in.nextDouble();
+                Date registerDate = timeFt.parse(in.next());
+                Date renewDate = timeFt.parse(in.next());
+                String firstName = in.next();
+                String lastName = in.next();
+                String parentFirstName = in.next();
+                String parentLastName = in.next();
+                String phone = in.next();
+                String address = in.next();
+                students.add(new Student(studentId, age, gpa, registerDate, renewDate, firstName, lastName, parentFirstName, parentLastName, phone, address));
+                in.close();
+            }
+
+            inLine.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void writeStudentsCSV() {
+        SimpleDateFormat timeFt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+              FileWriter fw = new FileWriter(studentCSVFile);
+              BufferedWriter out = new BufferedWriter(fw);
+
+            for (Student stu : students) {
+                out.write(Integer.toString(stu.getStudentId()));
+                out.write(',');
+                out.write(Integer.toString(stu.getAge()));
+                out.write(',');
+                out.write(Double.toString(stu.getGpa()));
+                out.write(',');
+                out.write(timeFt.format(stu.getRegisterTime()));
+                out.write(',');
+                out.write(timeFt.format(stu.getRenewDate()));
+                out.write(',');
+                out.write(stu.getFirstName());
+                out.write(',');
+                out.write(stu.getLastName());
+                out.write(',');
+                out.write(stu.getParentFirstName());
+                out.write(',');
+                out.write(stu.getParentLastName());
+                out.write(',');
+                out.write(stu.getPhone());
+                out.write(',');
+                out.write(stu.getAddress());
+
+                out.newLine();
+            }
+
+            out.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setTable() {
         String[] name = {"studentId", "age", "firstName", "lastName", "registerTime",
-                "gpa", "phone", "address", "parentFirstName", "parentLastName"};
+                "renewDate", "gpa", "phone", "address", "parentFirstName", "parentLastName"};
         SimpleDateFormat timeFt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         int row = 1 + students.size();  // 标题 + 所有对象数据
@@ -83,6 +151,8 @@ public class StudentRenewPanel {
                     tableData[i][j] = stu.getLastName();
                 } else if (name[j].equals("registerTime")) {
                     tableData[i][j] = timeFt.format(stu.getRegisterTime());
+                } else if (name[j].equals("renewDate")) {
+                    tableData[i][j] = timeFt.format(stu.getRenewDate());
                 } else if (name[j].equals("gpa")) {
                     tableData[i][j] = stu.getGpa();
                 } else if (name[j].equals("phone")) {
@@ -101,100 +171,111 @@ public class StudentRenewPanel {
         DefaultTableModel model = new DefaultTableModel(tableData, name);
         table.setModel(model);
 
-        table.setBounds(75, 0, 500, 180);
+        table.setBounds(75, 0, 800, 180);
         jPanel.add(table);
     }
 
     private void setInputLabelsAndFields() {
         studentIdLabel = new JLabel();
         studentIdLabel.setText("studentId:");
-        studentIdLabel.setBounds(75,190,200,25);
+        studentIdLabel.setBounds(75, 190, 200, 25);
         jPanel.add(studentIdLabel);
 
         txtStudentId = new JTextField();
-        txtStudentId.setBounds(275,190,200,25);
+        txtStudentId.setBounds(275, 190, 200, 25);
         jPanel.add(txtStudentId);
 
         ageLabel = new JLabel();
         ageLabel.setText("age:");
-        ageLabel.setBounds(75,220,200,25);
+        ageLabel.setBounds(75, 220, 200, 25);
         jPanel.add(ageLabel);
 
         txtAge = new JTextField();
-        txtAge.setBounds(275,220,200,25);
+        txtAge.setBounds(275, 220, 200, 25);
         jPanel.add(txtAge);
 
         firstNameLabel = new JLabel();
         firstNameLabel.setText("firstName:");
-        firstNameLabel.setBounds(75,250,200,25);
+        firstNameLabel.setBounds(75, 250, 200, 25);
         jPanel.add(firstNameLabel);
 
         txtFirstName = new JTextField();
-        txtFirstName.setBounds(275,250,200,25);
+        txtFirstName.setBounds(275, 250, 200, 25);
         jPanel.add(txtFirstName);
 
         lastNameLabel = new JLabel();
         lastNameLabel.setText("lastName:");
-        lastNameLabel.setBounds(75,280,200,25);
+        lastNameLabel.setBounds(75, 280, 200, 25);
         jPanel.add(lastNameLabel);
 
         txtLastName = new JTextField();
-        txtLastName.setBounds(275,280,200,25);
+        txtLastName.setBounds(275, 280, 200, 25);
         jPanel.add(txtLastName);
 
         registerTimeLabel = new JLabel();
         registerTimeLabel.setText("registerTime:");
-        registerTimeLabel.setBounds(75,310,200,25);
+        registerTimeLabel.setBounds(75, 310, 200, 25);
         jPanel.add(registerTimeLabel);
 
         txtRegisterTime = new JTextField();
-        txtRegisterTime.setBounds(275,310,200,25);
+        txtRegisterTime.setBounds(275, 310, 200, 25);
         jPanel.add(txtRegisterTime);
+
+        renewTimeLabel = new JLabel();
+        renewTimeLabel.setText("renewTime:");
+        renewTimeLabel.setBounds(75, 340, 200, 25);
+        jPanel.add(renewTimeLabel);
+
+        txtRenewTime = new JTextField();
+        txtRenewTime.setBounds(275, 340, 200, 25);
+        jPanel.add(txtRenewTime);
 
         gpaLabel = new JLabel();
         gpaLabel.setText("gpa:");
-        gpaLabel.setBounds(75,340,200,25);
+        gpaLabel.setBounds(75, 370, 200, 25);
         jPanel.add(gpaLabel);
 
         txtGpa = new JTextField();
-        txtGpa.setBounds(275,340,200,25);
+        txtGpa.setBounds(275, 370, 200, 25);
         jPanel.add(txtGpa);
 
         phoneLabel = new JLabel();
         phoneLabel.setText("phone:");
-        phoneLabel.setBounds(75,370,200,25);
+        phoneLabel.setBounds(75, 400, 200, 25);
         jPanel.add(phoneLabel);
 
         txtPhone = new JTextField();
-        txtPhone.setBounds(275,370,200,25);
+        txtPhone.setBounds(275, 400, 200, 25);
         jPanel.add(txtPhone);
 
         addressLabel = new JLabel();
         addressLabel.setText("address:");
-        addressLabel.setBounds(75,400,200,25);
+        addressLabel.setBounds(75, 430, 200, 25);
         jPanel.add(addressLabel);
 
         txtAddress = new JTextField();
-        txtAddress.setBounds(275,400,200,25);
+        txtAddress.setBounds(275, 430, 200, 25);
         jPanel.add(txtAddress);
 
         parentFirstNameLabel = new JLabel();
         parentFirstNameLabel.setText("parentFirstName:");
-        parentFirstNameLabel.setBounds(75,430,200,25);
+        parentFirstNameLabel.setBounds(75, 460, 200, 25);
         jPanel.add(parentFirstNameLabel);
 
         txtParentFirstName = new JTextField();
-        txtParentFirstName.setBounds(275,430,200,25);
+        txtParentFirstName.setBounds(275, 460, 200, 25);
         jPanel.add(txtParentFirstName);
 
         parentLastNameLabel = new JLabel();
         parentLastNameLabel.setText("parentLastName:");
-        parentLastNameLabel.setBounds(75,460,200,25);
+        parentLastNameLabel.setBounds(75, 490, 200, 25);
         jPanel.add(parentLastNameLabel);
 
         txtParentLastName = new JTextField();
-        txtParentLastName.setBounds(275,460,200,25);
+        txtParentLastName.setBounds(275, 490, 200, 25);
         jPanel.add(txtParentLastName);
+
+
     }
 
     private void updateStudentAndTable(int selectedRow, int studentId) {
@@ -232,34 +313,46 @@ public class StudentRenewPanel {
                     table.setValueAt(timeFt.format(stu.getRegisterTime()), selectedRow, 4);
                 }
 
+                if (txtRenewTime.getText().length() > 0) {
+                    try {
+                        stu.setRenewDate(timeFt.parse(txtRenewTime.getText()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    table.setValueAt(timeFt.format(stu.getRenewDate()), selectedRow, 5);
+                }
+
                 if (txtGpa.getText().length() > 0) {
                     stu.setGpa(Double.parseDouble(txtGpa.getText()));
-                    table.setValueAt(stu.getGpa(), selectedRow, 5);
+                    table.setValueAt(stu.getGpa(), selectedRow, 6);
                 }
 
                 if (txtPhone.getText().length() > 0) {
                     stu.setPhone(txtPhone.getText());
-                    table.setValueAt(stu.getPhone(), selectedRow, 6);
+                    table.setValueAt(stu.getPhone(), selectedRow, 7);
                 }
 
                 if (txtAddress.getText().length() > 0) {
                     stu.setAddress(txtAddress.getText());
-                    table.setValueAt(stu.getAddress(), selectedRow, 7);
+                    table.setValueAt(stu.getAddress(), selectedRow, 8);
                 }
 
                 if (txtParentFirstName.getText().length() > 0) {
                     stu.setParentFirstName(txtParentFirstName.getText());
-                    table.setValueAt(stu.getParentFirstName(), selectedRow, 8);
+                    table.setValueAt(stu.getParentFirstName(), selectedRow, 9);
                 }
 
                 if (txtParentLastName.getText().length() > 0) {
                     stu.setParentLastName(txtParentLastName.getText());
-                    table.setValueAt(stu.getParentLastName(), selectedRow, 9);
+                    table.setValueAt(stu.getParentLastName(), selectedRow, 10);
                 }
 
                 break;
             }
         }
+
+        writeStudentsCSV();
     }
 
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,6 +376,8 @@ public class StudentRenewPanel {
                 break;
             }
         }
+
+        writeStudentsCSV();
     }
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,6 +395,7 @@ public class StudentRenewPanel {
         table.repaint();
     }
 
+    private static String studentCSVFile = "src/main/java/edu/neu/csye6200/daycare/students.csv";
     private List<Student> students;
     private JPanel jPanel;
     private JTable table;
@@ -310,6 +406,7 @@ public class StudentRenewPanel {
     private JLabel firstNameLabel;
     private JLabel lastNameLabel;
     private JLabel registerTimeLabel;
+    private JLabel renewTimeLabel;
     private JLabel gpaLabel;
     private JLabel phoneLabel;
     private JLabel addressLabel;
@@ -320,6 +417,7 @@ public class StudentRenewPanel {
     private JTextField txtFirstName;
     private JTextField txtLastName;
     private JTextField txtRegisterTime;
+    private JTextField txtRenewTime;
     private JTextField txtGpa;
     private JTextField txtPhone;
     private JTextField txtAddress;
