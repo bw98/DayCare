@@ -14,8 +14,8 @@ public class Student extends Person implements Comparable<Student> {
 	private int studentId;
 	private double gpa;
 	
-	public Student(int studentId, int age, double gpa, Date registerTime, String firstName, String lastName, String parentFirstName, String parentLastName, String phone, String address) {
-		super(age, firstName, lastName, registerTime);
+	public Student(int studentId, int age, double gpa, Date registerDate, Date renewDate, String firstName, String lastName, String parentFirstName, String parentLastName, String phone, String address) {
+		super(age, firstName, lastName, registerDate, renewDate);
 		this.setParentFirstName(parentFirstName);
 		this.setParentLastName(parentLastName);
 		this.studentId = studentId;
@@ -27,7 +27,8 @@ public class Student extends Person implements Comparable<Student> {
 	public static Student parseStudentFromString(List<String> tokens) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		int id = -1;
-		Date date = new Date();
+		Date registerDate = new Date();
+		Date renewDate = new Date();
 		int age = -1;
 		double gpa = 0;
 		
@@ -50,19 +51,25 @@ public class Student extends Person implements Comparable<Student> {
 		}
 		
 		try {
-			date = df.parse(tokens.get(3));
+			registerDate = df.parse(tokens.get(3));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
-		String lastName = tokens.get(4);
-		String firstName = tokens.get(5);
-		String parentFirstName = tokens.get(6);
-		String parentLastName = tokens.get(7);
-		String phone = tokens.get(8);
-		String address = tokens.get(9);
+		try {
+			renewDate = df.parse(tokens.get(4));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
-		return new Student(id, age, gpa, date, lastName, firstName, parentLastName, parentFirstName, phone, address);
+		String lastName = tokens.get(5);
+		String firstName = tokens.get(6);
+		String parentFirstName = tokens.get(7);
+		String parentLastName = tokens.get(8);
+		String phone = tokens.get(9);
+		String address = tokens.get(10);
+		
+		return new Student(id, age, gpa, registerDate, renewDate, lastName, firstName, parentLastName, parentFirstName, phone, address);
 	}
 	
 	public static String serialize(Student s) {
@@ -76,6 +83,8 @@ public class Student extends Person implements Comparable<Student> {
 		sBuffer.append(s.getGpa());
 		sBuffer.append(',');
 		sBuffer.append(df.format(s.getRegisterTime()));
+		sBuffer.append(',');
+		sBuffer.append(df.format(s.getRenewDate()));
 		sBuffer.append(',');
 		sBuffer.append(s.getLastName());
 		sBuffer.append(',');
