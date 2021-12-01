@@ -22,8 +22,8 @@ public class StudentRenewPanel {
         // 目前的想法：点击 StudentRenew 按钮的时候，自动更新 students
         //
         students = new ArrayList<Student>();
-        students.add(new Student(1, 30, 3.5, new Date(), "Nana", "O-yang", "baba1", "Yang", "18322215", "Boston Pdt"));
-        students.add(new Student(3, 19, 2.0, new Date(), "Jing", "Yang", "baba2", "Y", "110", "CA SD"));
+        students.add(new Student(1, 30, 3.5, new Date(),new Date(), "Nana", "O-yang", "baba1", "Yang", "18322215", "Boston Pdt"));
+        students.add(new Student(3, 19, 2.0, new Date(),new Date(), "Jing", "Yang", "baba2", "Y", "110", "CA SD"));
         //
 
         setTable();
