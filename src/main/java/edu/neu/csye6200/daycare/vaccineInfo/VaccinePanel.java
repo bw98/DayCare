@@ -25,6 +25,34 @@ public class VaccinePanel{
         panel = new JPanel();
         alert = new JButton("Vaccine alert");
         show = new JButton("Show vaccine record");
+
+        MouseAdapter doubleClick =new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if(e.getClickCount() == 2){
+                    int row = jTable.rowAtPoint(e.getPoint());
+                    int id =  Integer.valueOf(jTable.getValueAt(row, 0).toString());
+                    String vaccine = (String)jTable.getValueAt(row, 4);
+                    if(JOptionPane.showConfirmDialog(null, "Do you want to vaccine " + vaccine + " on student ID: " + id + "?", "Vaccine Confirm", JOptionPane.YES_NO_OPTION) == 0){
+                        try {
+                            writeVaccine(id, vaccine);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        //alert.doClick();
+                        model.setRowCount(0);
+                        for(Student s : demo.students){
+                            for(Map.Entry<String, Integer> mp : VaccineNotification.getNotification(s).entrySet()){
+                                model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getFirstName(), s.getLastName(), String.valueOf(s.getAge()), mp.getKey(), String.valueOf(mp.getValue())});
+
+                            }
+                        }
+                    }
+
+
+                }
+            }
+        };
         show.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -39,9 +67,10 @@ public class VaccinePanel{
 
                     }
                 }
+
+                jTable.removeMouseListener(doubleClick);
             }
         });
-        int row = 0, col = 4;
         alert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,38 +83,18 @@ public class VaccinePanel{
 
                     }
                 }
+                jTable.addMouseListener(doubleClick);
             }
         });
         model = new DefaultTableModel();
         model.setColumnCount(5);
         String[] colName = new String[]{"Student ID", "FirstName", "LastName",  "Age(months)", "Vaccine", "Date(months)/Doses need"};
         model.setColumnIdentifiers(colName);
-        jTable = new JTable(model);
+        jTable = new JTable(model){public boolean isCellEditable(int row, int column) { return false; }};
 
         //jTable.setModel(model);
         jTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTable.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if(e.getClickCount() == 2){
-                    int row = jTable.rowAtPoint(e.getPoint());
-                    int id =  Integer.valueOf(jTable.getValueAt(row, 0).toString());
-                    String vaccine = (String)jTable.getValueAt(row, 4);
-                    if(JOptionPane.showConfirmDialog(null, "Do you want to vaccine " + vaccine + " on student ID: " + id + "?", "Vaccine Confirm", JOptionPane.YES_NO_OPTION) == 0){
-                        try {
-                            writeVaccine(id, vaccine);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                        alert.doClick();
-                    }
-
-
-                }
-
-            }
-        });
-        jTable.setEnabled(false);
+        //jTable.setEnabled(false);
         panel.add(alert);
         panel.add(show);
         panel.add(new JScrollPane(jTable));
