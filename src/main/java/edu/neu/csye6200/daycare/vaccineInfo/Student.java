@@ -6,13 +6,17 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Student {
 
-    private String name;
+    private String firstName;
+    private String lastName;
     private int age;
     private int studentId;
 
     private ConcurrentHashMap<Vaccine, Vector<Integer>> immuRecord;
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName(){
+        return lastName;
     }
     public int getAge() {
         return age;
@@ -58,9 +62,10 @@ public class Student {
         }
     }
 
-    public Student(int id, String name, int age){
+    public Student(int id, String firstName, String lastName, int age){
         this.studentId = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         immuRecord = new ConcurrentHashMap<>();
         initRecord();

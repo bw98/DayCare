@@ -8,22 +8,12 @@ public class demo {
     public static Vector<Student> students = new Vector<>();
     public static void main(String[] args) {
 
-        Student s1 = new Student(1, "s1", 62);
-        Student s2 = new Student(2, "s2", 40);
+        Student s1 = new Student(1, "s1f", "s1l", 62);
+        Student s2 = new Student(2, "s2f", "s2l", 40);
 
         students.add(s1);
         students.add(s2);
-
-
         new Menu().show();
-    }
-
-    public static void openImmuNotify(Vector<Student> students){
-        SwingUtilities.invokeLater(new AlertVaccine(students));
-    }
-
-    public static void openImmuRecord(Vector<Student> students){
-        SwingUtilities.invokeLater(new ShowVaccine(students));
     }
 
 

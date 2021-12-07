@@ -1,10 +1,16 @@
 package edu.neu.csye6200.daycare;
 
+import edu.neu.csye6200.daycare.vaccineInfo.Vaccine;
+import edu.neu.csye6200.daycare.vaccineInfo.VaccineFactory;
+import edu.neu.csye6200.daycare.vaccineInfo.VaccineUtil;
+
 import java.util.Date;
 import java.util.List;
 
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Student extends Person implements Comparable<Student> {
 	private String parentFirstName;
@@ -13,7 +19,38 @@ public class Student extends Person implements Comparable<Student> {
 	private String address;
 	private int studentId;
 	private double gpa;
-	
+	private ConcurrentHashMap<Vaccine, Vector<Integer>> immuRecord;
+	public ConcurrentHashMap<Vaccine, Vector<Integer>> getImmuRecord(){
+		return immuRecord;
+	}
+	public void setImmuRecord(){
+		List<String> record = VaccineUtil.getVaccineList(this.studentId);
+		if(record.isEmpty()){
+			System.out.println("record empty");
+			return;
+		}
+		int l = 1, r = record.size() - 1;
+		if((r - l) % 2 == 0){
+			System.out.println("err");
+			return;
+		}
+		for(int i = l; i <= r; i+= 2){
+			Vaccine temp = VaccineFactory.getVaccine(record.get(i));
+			if(temp == null){
+				System.out.println("Student init vaccine err!");
+				continue;
+			}
+			immuRecord.putIfAbsent(temp, new Vector<>());
+			immuRecord.get(temp).add(Integer.valueOf(record.get(i + 1)));
+		}
+	}
+
+	public void initRecord(){
+		VaccineFactory.getInstance();
+		for(Vaccine v : VaccineFactory.getObject()){
+			this.immuRecord.put(v, new Vector<>());
+		}
+	}
 	public Student(int studentId, int age, double gpa, Date registerDate, Date renewDate, String firstName, String lastName, String parentFirstName, String parentLastName, String phone, String address) {
 		super(age, firstName, lastName, registerDate, renewDate);
 		this.setParentFirstName(parentFirstName);
@@ -22,6 +59,9 @@ public class Student extends Person implements Comparable<Student> {
 		this.phone = phone;
 		this.address = address;
 		this.gpa = gpa;
+		immuRecord = new ConcurrentHashMap<>();
+		initRecord();
+		setImmuRecord();
 	}
 	
 	public static Student parseStudentFromString(List<String> tokens) {

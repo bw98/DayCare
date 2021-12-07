@@ -29,12 +29,12 @@ public class VaccinePanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
-                String[] colName = new String[]{"Student ID", "Name", "Age(months)", "Vaccine", "Vaccine age(months)"};
+                String[] colName = new String[]{"Student ID", "FirstName", "LastName", "Age(months)", "Vaccine", "Vaccine age(months)"};
                 model.setColumnIdentifiers(colName);
                 for(Student s : demo.students){
                     for(Map.Entry<Vaccine, Vector<Integer>> mp : s.getImmuRecord().entrySet()){
                         for(int month : mp.getValue()){
-                            model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getName(), String.valueOf(s.getAge()), mp.getKey().getName(), String.valueOf(month)});
+                            model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getFirstName(), s.getLastName(), String.valueOf(s.getAge()), mp.getKey().getName(), String.valueOf(month)});
                         }
 
                     }
@@ -46,11 +46,11 @@ public class VaccinePanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
-                String[] colName = new String[]{"Student ID", "Name", "Age(months)", "Vaccine", "Doses need"};
+                String[] colName = new String[]{"Student ID", "FirstName", "LastName", "Age(months)", "Vaccine", "Doses need"};
                 model.setColumnIdentifiers(colName);
                 for(Student s : demo.students){
                     for(Map.Entry<String, Integer> mp : VaccineNotification.getNotification(s).entrySet()){
-                        model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getName(), String.valueOf(s.getAge()), mp.getKey(), String.valueOf(mp.getValue())});
+                        model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getFirstName(), s.getLastName(), String.valueOf(s.getAge()), mp.getKey(), String.valueOf(mp.getValue())});
 
                     }
                 }
@@ -58,7 +58,7 @@ public class VaccinePanel{
         });
         model = new DefaultTableModel();
         model.setColumnCount(5);
-        String[] colName = new String[]{"Student ID", "Name", "Age(months)", "Vaccine", "Date(months)/Doses need"};
+        String[] colName = new String[]{"Student ID", "FirstName", "LastName",  "Age(months)", "Vaccine", "Date(months)/Doses need"};
         model.setColumnIdentifiers(colName);
         jTable = new JTable(model);
 
@@ -70,7 +70,7 @@ public class VaccinePanel{
                 if(e.getClickCount() == 2){
                     int row = jTable.rowAtPoint(e.getPoint());
                     int id =  Integer.valueOf(jTable.getValueAt(row, 0).toString());
-                    String vaccine = (String)jTable.getValueAt(row, 3);
+                    String vaccine = (String)jTable.getValueAt(row, 4);
                     if(JOptionPane.showConfirmDialog(null, "Do you want to vaccine " + vaccine + " on student ID: " + id + "?", "Vaccine Confirm", JOptionPane.YES_NO_OPTION) == 0){
                         try {
                             writeVaccine(id, vaccine);
@@ -95,13 +95,14 @@ public class VaccinePanel{
     public static void writeVaccine(int id, String vaccine) throws IOException {
         int row = 0;
         File file = new File("src/main/java/edu/neu/csye6200/daycare/vaccineInfo/vaccine.txt");
-        Student s = new Student(-1, "name", -1);
+        Student s = new Student(-1, "first", "last",  -1);
         for(Student ss : demo.students){
             if(ss.getStudentId() == id){
                 s = ss;
             }
         }
         Vaccine cur = VaccineFactory.getVaccine(vaccine);
+        System.out.println(cur.getName());
         s.getImmuRecord().get(cur).add(s.getAge());
         try(BufferedReader inLine = new BufferedReader(new FileReader("src/main/java/edu/neu/csye6200/daycare/vaccineInfo/vaccine.txt"));){
             String in = null;
@@ -125,7 +126,9 @@ public class VaccinePanel{
     }
 
     public static JPanel getPanel(){
-        return new VaccinePanel().panel;
+
+            return new VaccinePanel().panel;
+
     }
 
 }

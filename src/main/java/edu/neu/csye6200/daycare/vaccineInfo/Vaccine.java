@@ -7,7 +7,7 @@ public class Vaccine {
 
     private String name;
     private int doses;
-    private int seperateMonths;
+    private int seperateMonths = 1;
     Vector<ConcurrentHashMap<int[], Integer>> ageList;
 
     public String getName() {
@@ -50,7 +50,7 @@ public class Vaccine {
     public Vaccine(String name, int doses){
         setName(name);
         setDoses(doses);
-        setSeperateMonths(0);
+        setSeperateMonths(1);
         this.ageList = new Vector<>();
     }
 }
