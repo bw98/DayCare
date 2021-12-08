@@ -10,7 +10,7 @@ public class Item {
 	private ActionListener actionListener;
 	private ActionListener wrapActionListener;
 	
-	Item(String title, JPanel jPanel) {
+	public Item(String title, JPanel jPanel) {
 		this.setTitle(title);
 		this.setjPanel(jPanel);
 	}

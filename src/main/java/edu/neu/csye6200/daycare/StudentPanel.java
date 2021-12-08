@@ -1,5 +1,6 @@
 package edu.neu.csye6200.daycare;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,10 +53,20 @@ public class StudentPanel {
 						}
 					}
 				});
-				
-				try (FileUtil fUtility = new FileUtil(new FileWriter("src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "neu" + File.separator + "csye6200" + File.separator + "daycare" + File.separator + "students.csv", true))) {
+
+				String sep = File.separator;
+				try (FileUtil fUtility = new FileUtil(new FileWriter("src"+sep+"main" + sep + "java" + sep + "edu" + sep + "neu" + sep + "csye6200" + sep + "daycare" + sep + "students.csv", true))) {
 					fUtility.write(Student.serialize(student));
 					
+				} catch (Exception excpt) {
+					excpt.printStackTrace();
+				}
+				try (BufferedWriter bw = new BufferedWriter(new FileWriter("src"+sep+"main"+sep+"java"+sep+"edu"+sep+"neu"+sep+"csye6200"+sep+"daycare"+sep+"vaccineInfo"+sep+"vaccine.txt", true))) {
+					bw.write(String.valueOf(student.getStudentId()));
+					bw.newLine();
+					bw.close();
+					System.out.println(student.getStudentId());
+
 				} catch (Exception excpt) {
 					excpt.printStackTrace();
 				}
