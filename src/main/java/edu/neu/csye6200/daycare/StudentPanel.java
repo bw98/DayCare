@@ -53,6 +53,7 @@ public class StudentPanel {
 						}
 					}
 				});
+
 				String sep = File.separator;
 				try (FileUtil fUtility = new FileUtil(new FileWriter("src"+sep+"main" + sep + "java" + sep + "edu" + sep + "neu" + sep + "csye6200" + sep + "daycare" + sep + "students.csv", true))) {
 					fUtility.write(Student.serialize(student));
