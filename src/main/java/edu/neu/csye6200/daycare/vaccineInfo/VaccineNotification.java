@@ -1,5 +1,7 @@
 package edu.neu.csye6200.daycare.vaccineInfo;
 
+import edu.neu.csye6200.daycare.Student;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -8,7 +10,7 @@ public class VaccineNotification {
 
     public static Map<String, Integer> getNotification(Student s){
         Map<String, Integer> map = new HashMap<>();
-        int age = s.getAge();
+        int age = s.getAge() * 12;
         VaccineFactory.getInstance();
         Vector<Vaccine> list = VaccineFactory.getObject();
         for(Vaccine immu : list){
@@ -21,7 +23,17 @@ public class VaccineNotification {
             int doses = s.getImmuRecord().get(immu).size();
             for(Map<int[], Integer> each :  immu.getAgeList()){
                 for(Map.Entry<int[], Integer> eachMap : each.entrySet()){
-                    if(age < eachMap.getKey()[0] || age > eachMap.getKey()[1]){
+
+                    if(doses < eachMap.getValue()){
+                        if(s.getImmuRecord().get(immu).size() == 0 || immu.getSeperateMonths() != 0 && age - s.getImmuRecord().get(immu).get(s.getImmuRecord().get(immu).size() - 1) > immu.getSeperateMonths()){
+                            map.put(immu.getName(), eachMap.getValue() - doses);
+                        }
+                        break;
+                    }else{
+                        doses -= eachMap.getValue();
+                        continue;
+                    }
+                    /*if(age < eachMap.getKey()[0] || age > eachMap.getKey()[1]){
                         continue;
                     }
                     if(doses >= eachMap.getValue()){
@@ -31,7 +43,7 @@ public class VaccineNotification {
                             map.put(immu.getName(), eachMap.getValue() - doses);
                         }
                         break;
-                    }
+                    }*/
 
                 }
             }
