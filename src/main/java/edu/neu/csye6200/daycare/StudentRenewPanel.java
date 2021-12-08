@@ -152,7 +152,13 @@ public class StudentRenewPanel {
                 } else if (name[j].equals("registerTime")) {
                     tableData[i][j] = timeFt.format(stu.getRegisterTime());
                 } else if (name[j].equals("renewDate")) {
-                    tableData[i][j] = timeFt.format(stu.getRenewDate());
+                    String renewDateStr = timeFt.format(stu.getRenewDate());
+                    String defaultRenewDateStr = timeFt.format(new Date(0));
+                    if (renewDateStr.equals(defaultRenewDateStr)) {
+                        tableData[i][j] = "";
+                    } else {
+                        tableData[i][j] = renewDateStr;
+                    }
                 } else if (name[j].equals("gpa")) {
                     tableData[i][j] = stu.getGpa();
                 } else if (name[j].equals("phone")) {
