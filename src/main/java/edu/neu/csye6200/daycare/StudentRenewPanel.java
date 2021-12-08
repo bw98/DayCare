@@ -49,7 +49,15 @@ public class StudentRenewPanel {
 
         jPanel.add(deleteBtn);
 
-        return new Item("Student Renew", jPanel);
+        return new Item("Student Renew", jPanel, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				toItem();
+			}
+        	
+        });
     }
 
     private void readStudentsCSV() {
@@ -129,7 +137,7 @@ public class StudentRenewPanel {
                 "renewDate", "gpa", "phone", "address", "parentFirstName", "parentLastName"};
         SimpleDateFormat timeFt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        int row = 1 + students.size();  // 标题 + 所有对象数据
+        int row = 1 + students.size();  // 鏍囬 + 鎵�鏈夊璞℃暟鎹�
         int col = name.length;
 
         Object[][] tableData = new Object[row][col];
