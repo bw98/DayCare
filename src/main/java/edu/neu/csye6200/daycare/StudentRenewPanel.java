@@ -401,7 +401,8 @@ public class StudentRenewPanel {
         table.repaint();
     }
 
-    private static String studentCSVFile = "src/main/java/edu/neu/csye6200/daycare/students.csv";
+    // private static String studentCSVFile = "src/main/java/edu/neu/csye6200/daycare/students.csv";
+    private static String studentCSVFile = "src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "neu" + File.separator + "csye6200" + File.separator + "daycare" + File.separator + "students.csv";
     private List<Student> students;
     private JPanel jPanel;
     private JTable table;
