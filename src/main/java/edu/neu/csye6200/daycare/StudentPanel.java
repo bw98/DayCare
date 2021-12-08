@@ -53,7 +53,7 @@ public class StudentPanel {
 				});
 				
 				try (FileUtil fUtility = new FileUtil(new FileWriter("src\\main\\java\\edu\\neu\\csye6200\\daycare\\students.csv", true))) {
-					fUtility.write("\n" + Student.serialize(student));
+					fUtility.write(Student.serialize(student));
 					
 				} catch (Exception excpt) {
 					excpt.printStackTrace();
