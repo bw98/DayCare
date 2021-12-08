@@ -1,5 +1,6 @@
 package edu.neu.csye6200.daycare.vaccineInfo;
 
+import edu.neu.csye6200.daycare.Item;
 import edu.neu.csye6200.daycare.Student;
 
 import javax.swing.*;
@@ -13,6 +14,8 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
+
 public class VaccinePanel{
 
     private JPanel panel;
@@ -20,6 +23,10 @@ public class VaccinePanel{
     private JButton show;
     private JTable jTable;
     private DefaultTableModel model;
+
+    public Item toItem(){
+        return new Item("Vaccine", VaccinePanel.getPanel());
+    }
 
     public VaccinePanel(){
 

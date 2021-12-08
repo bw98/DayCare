@@ -9,7 +9,7 @@ public class Item {
 	private JPanel jPanel;
 	private ActionListener actionListener;
 	
-	Item(String title, JPanel jPanel) {
+	public Item(String title, JPanel jPanel) {
 		this.setTitle(title);
 		this.setjPanel(jPanel);
 	}
