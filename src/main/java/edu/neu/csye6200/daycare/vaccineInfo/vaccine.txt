@@ -1,2 +1,2 @@
-1,Hepatitis B,40,Hib,27,Hepatitis B,62
+1,Hepatitis B,40,Hib,27,Hepatitis B,62,MMR,62,Varicella,62
 2,DTaP,25,Hib,25,Hib,32,Polio,40

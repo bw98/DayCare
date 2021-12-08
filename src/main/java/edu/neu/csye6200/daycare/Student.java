@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
+
 public class Student extends Person implements Comparable<Student> {
 	private String parentFirstName;
 	private String parentLastName;
@@ -65,13 +66,13 @@ public class Student extends Person implements Comparable<Student> {
 	}
 	
 	public static Student parseStudentFromString(List<String> tokens) {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		int id = -1;
 		Date registerDate = new Date();
 		Date renewDate = new Date();
 		int age = -1;
 		double gpa = 0;
-		
+		System.out.println(tokens);
 		try {
 			id = Integer.parseInt(tokens.get(0));
 		} catch (NumberFormatException e) {
@@ -91,15 +92,22 @@ public class Student extends Person implements Comparable<Student> {
 		}
 		
 		try {
-			registerDate = df.parse(tokens.get(3));
+			System.out.println(tokens.get(3));
+			registerDate=df.parse(tokens.get(3));
+			
+			System.out.println(registerDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-		try {
-			renewDate = df.parse(tokens.get(4));
-		} catch (ParseException e) {
-			e.printStackTrace();
+		if(tokens.get(4)=="") {
+			renewDate=null;
+		}
+		else {
+			try {
+				renewDate = df.parse(tokens.get(4));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		String lastName = tokens.get(5);
@@ -124,7 +132,12 @@ public class Student extends Person implements Comparable<Student> {
 		sBuffer.append(',');
 		sBuffer.append(df.format(s.getRegisterTime()));
 		sBuffer.append(',');
-		sBuffer.append(df.format(s.getRenewDate()));
+		if(s.getRenewDate()==null) {
+			sBuffer.append("");
+		}
+		else {
+			sBuffer.append(df.format(s.getRenewDate()));
+		}
 		sBuffer.append(',');
 		sBuffer.append(s.getLastName());
 		sBuffer.append(',');
