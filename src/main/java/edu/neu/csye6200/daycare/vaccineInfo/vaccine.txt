@@ -1,2 +1,5 @@
-1,Hepatitis B,40,Hib,27,Hepatitis B,62
-2,DTaP,25,Hib,25,Hib,32,Polio,40
+5,Meningococcal,216,Varicella,216,Hib,216,Hepatitis B,216
+3,Varicella,324,Hepatitis B,324,Meningococcal,324
+2,Meningococcal,420
+11,Varicella,372,Hepatitis B,372
+55,Hepatitis B,792,MMR,792,Varicella,792,Polio,792,Hib,792

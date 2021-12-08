@@ -4,6 +4,9 @@ import edu.neu.csye6200.daycare.vaccineInfo.Vaccine;
 import edu.neu.csye6200.daycare.vaccineInfo.VaccineFactory;
 import edu.neu.csye6200.daycare.vaccineInfo.VaccineUtil;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -63,6 +66,8 @@ public class Student extends Person implements Comparable<Student> {
 		initRecord();
 		setImmuRecord();
 	}
+
+
 	
 	public static Student parseStudentFromString(List<String> tokens) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
