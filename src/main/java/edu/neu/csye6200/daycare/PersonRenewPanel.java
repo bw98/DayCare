@@ -18,12 +18,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.text.TableView.TableRow;
 
 public class PersonRenewPanel extends JPanel{
 	private JTable table;
 	private JButton renewButton;
 	private Students ss;
-	
+	private int renew_period=100;
 	public Item toItem() {
 		return new Item("renew_person", this);
 	}
@@ -78,7 +80,12 @@ public class PersonRenewPanel extends JPanel{
 					break;
 				case 4:
 					if(a instanceof Student) {
-						tableData[i][j]=df.format(((Student) a).getRenewDate());
+						if(judge_alert(((Student) a).getRenewDate())) {
+							tableData[i][j]="Need to renew!";
+						}
+						else {
+							tableData[i][j]=df.format(((Student) a).getRenewDate());
+						}
 					}
 					break;
 				case 5:
@@ -110,6 +117,7 @@ public class PersonRenewPanel extends JPanel{
 		String[] titles= {"id","age","gpa","register_date","renew_date","name","parent_name","phone","address"};
 		table=new JTable(tableData,titles);
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
 		add(new JScrollPane(table),BorderLayout.CENTER);
 		panel.add(renewButton);
 	}
@@ -128,6 +136,29 @@ public class PersonRenewPanel extends JPanel{
 		}
 	}
 	
+	public static int distance_days(Date d) {
+		int distance=0;
+		Date now=new Date();
+		try {
+			
+			long diff=now.getTime()-d.getTime();
+			distance=(int)(diff/(1000*60*60*24));
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return distance;
+	}
+	
+	public boolean judge_alert(Date d) {
+		if(distance_days(d)>renew_period) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
 	
 }
 

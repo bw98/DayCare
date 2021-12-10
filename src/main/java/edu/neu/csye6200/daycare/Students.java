@@ -125,7 +125,7 @@ public class Students extends AbstStudents{
 	}
 	
 	public void update_renew_date(int id,String date) throws ParseException {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		for(Person s: this.ss) {
 			if(s instanceof Student) {
 				if(((Student)s).getStudentId()==id) {
