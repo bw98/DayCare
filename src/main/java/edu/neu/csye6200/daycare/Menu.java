@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,16 +28,16 @@ public class Menu {
 	}
 	
 	public boolean registerItem(Item item) {
-		if (item.getActionListener() == null) {
-			item.setActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					cardLayout.show(mJPanel, item.getTitle());
-				}
-				
-			});
-		}
+		item.setWrapActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(mJPanel, item.getTitle());
+				if (item.getActionListener() != null) item.getActionListener().actionPerformed(e);
+			}
+
+		});
 
 		return items.add(item);
 	}
@@ -48,26 +49,18 @@ public class Menu {
 	public void show() {
 		JFrame jFrame = new JFrame("demo");
 		jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-		JPanel panel1 = new JPanel();
-		panel1.add(new JButton("first panel content"));
-		registerItem(new Item("first panel", panel1));
-		
-		JPanel panel2 = new JPanel();
-		panel2.add(new JButton("second panel content"));
-		registerItem(new Item("second panel", panel2));
 		
 		// add buttons for all items
 		for (Item item : items) {
 			JButton btn = new JButton(item.getTitle());
-			btn.addActionListener(item.getActionListener());
+			btn.addActionListener(item.getWrapActionListener());
 			btnPanel.add(btn);
 			mJPanel.add(item.getjPanel(), item.getTitle());
 		}
 		
 		jFrame.add(btnPanel, BorderLayout.NORTH);
 		jFrame.add(mJPanel, BorderLayout.CENTER);
-		jFrame.setSize(600, 400);
+		jFrame.setSize(1000, 800);
 		jFrame.setVisible(true);
 	}
 }
