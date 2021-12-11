@@ -129,6 +129,7 @@ public class Students extends AbstStudents{
 		for(Person s: this.ss) {
 			if(s instanceof Student) {
 				if(((Student)s).getStudentId()==id) {
+					System.out.println(df.parse(date));
 					s.setRenewDate(df.parse(date));
 					System.out.println(s.getRenewDate());
 				}

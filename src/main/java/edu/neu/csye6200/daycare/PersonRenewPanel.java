@@ -123,7 +123,7 @@ public class PersonRenewPanel extends JPanel{
 	}
 	
 	protected void renew_person(ActionEvent e) throws Exception {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		//DefaultTableModel model=(DefaultTableModel) table.getModel();
 		int[] selectedRows=table.getSelectedRows();
 		for(int i: selectedRows) {
