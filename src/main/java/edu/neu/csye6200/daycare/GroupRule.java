@@ -7,6 +7,14 @@ import edu.neu.csye6200.daycare.Group.BadGroupSizeException;
 public class GroupRule extends AbstGroupRule{
 	private Map<Integer, List<Group>> groupMap;	// group capacity, group list
 	private Map<Integer, Group> groups;			// group gid, group
+	public Map<Integer, Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Map<Integer, Group> groups) {
+		this.groups = groups;
+	}
+
 	private int gid_i = 0;
 	
 	@Override
@@ -33,6 +41,14 @@ public class GroupRule extends AbstGroupRule{
 	public Map<Integer, List<Group>> generateGroups(Teachers ts, Students ss) {
 
 		return null;
+	}
+
+	public Map<Integer, List<Group>> getGroupMap() {
+		return groupMap;
+	}
+
+	public void setGroupMap(Map<Integer, List<Group>> groupMap) {
+		this.groupMap = groupMap;
 	}
 
 }
