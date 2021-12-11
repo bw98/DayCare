@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,7 +52,7 @@ public class PersonRenewPanel extends JPanel{
 				}
 			}
 		});
-		ss=new Students("src\\main\\java\\edu\\neu\\csye6200\\daycare\\students.csv");
+		ss=new Students("src"+ File.separator+"main" + File.separator + "java" +File.separator+"edu" + File.separator+"neu" + File.separator+"csye6200"+File.separator+"daycare"+File.separator+"students.csv");
 		Object[][] tableData=new Object[ss.getNumber()][9];
 		Iterator<Person> iter=ss.iterator();
 		for(int i=0;i<ss.getNumber();i++) {
