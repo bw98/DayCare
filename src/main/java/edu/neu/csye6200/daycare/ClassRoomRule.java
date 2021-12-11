@@ -18,10 +18,13 @@ public class ClassRoomRule extends AbstClassRule{
 			_level = g.getCapacity();
 			if(!roomLevels.containsKey(_level)) {
 				this.createClassRoom(g);
+//				System.out.println(this.getClassRoom(newid));
 			}else {
 				ClassRoom avaliable = this.getAvaliableRoom(_level);
+//				System.out.println("Avaliable room: " + avaliable);
 				if(avaliable == null) {
 					this.createClassRoom(g);
+//					System.out.println(this.getClassRoom(newid));
 				}else {
 					this.assignGroup(g, avaliable);
 				}
@@ -82,7 +85,10 @@ public class ClassRoomRule extends AbstClassRule{
 	private int createClassRoom(Group g) {
 		int _cid = this.cidUp();
 		int _level =g.getCapacity();
-		rooms.put(_cid, cf.getObject(g, _cid, this.lv2cap(_level)));
+//		System.out.println("cid: " + this.getCid() +" Group level: " + _level + " capacity: " + this.lv2cap(_level));
+		ClassRoom new_room = cf.getObject(g, _cid, this.lv2cap(_level));
+//		System.out.println(new_room);
+		rooms.put(_cid, new_room);
 		if(!this.getClassLevel().containsKey(_level)) {
 			this.createNewLevel(_level);
 		}
@@ -103,6 +109,18 @@ public class ClassRoomRule extends AbstClassRule{
 	@Override
 	public int assignGroup(Group g, int cid) {
 		return this.assignGroup(g, this.getClassRoom(cid));
+	}
+	
+	@Override 
+	public int assignGroup(Group g) {
+		ClassRoom a = this.getAvaliableRoom(g.getCapacity());
+		if (a == null) {
+			this.createClassRoom(g);
+		}
+		else {
+			assignGroup(g,a);
+		}
+		return 0;
 	}
 	
 	@Override
@@ -166,5 +184,36 @@ public class ClassRoomRule extends AbstClassRule{
 		return max;
 	}
 
+	@Override
+	public String toString() {
+		String result = "";
+		for(Entry<Integer, ClassRoom> c: this.getClassrooms().entrySet()) {
+			result = result + c.getValue() + "\n";
+		}
+		return result;
+//		return this.getClassrooms().toString();
+	}
+	
+	public static void demo() {
+		Group g1 = new Group(4);
+		Group g2 = new Group(5);
+		Group g3 = new Group(6);
+		Group g4 = new Group(8);
+		Group g5 = new Group(12);
+		Group g6 = new Group(15);
+		Group g7 = new Group(12);
+		Group g8 = new Group(15);
+		Group g9 = new Group(15);
+		Group g10 = new Group(15);
+		Group g11 = new Group(15);
 
+		List<Group> gs = Arrays.asList(g1,g2,g3,g4,g5,g6,g7,g8,g9,g10);
+		ClassRoomRule r = new ClassRoomRule(gs);
+		System.out.println(r + "\n");
+		r.assignGroup(g11);
+//		for (Entry<Integer, ClassRoom> e:r.getClassrooms().entrySet()) {
+//			System.out.println(e.getValue());
+//		}
+		System.out.println(r);
+	}
 }

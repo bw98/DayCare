@@ -81,7 +81,7 @@ public class ClassRoom extends AbstClassRoom{
 	@Override
 	public int addGroup(Group g) {
 		if(this.getCapacity() > this.getSize()) {
-			this.setCapacity(this.getCapacity() + 1);
+//			this.setCapacity(this.getCapacity() + 1);
 			this.getGroups().add(g);
 			this.setSize(this.getSize()+1);
 			return 0;
@@ -89,5 +89,10 @@ public class ClassRoom extends AbstClassRoom{
 		else {
 			return -1;
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return "Class room id: "+ this.getCid() + " Capacity: " + this.getCapacity() + " Level: "+ this.getLevel() + " Current size: " + this.getSize();
 	}
 }
