@@ -5,8 +5,8 @@ import java.util.*;
 import edu.neu.csye6200.daycare.Group.BadGroupSizeException;
 
 public class GroupRule extends AbstGroupRule{
-	private Map<Integer, List<Group>> groupMap;
-	private Map<Integer, Group> groups;
+	private Map<Integer, List<Group>> groupMap;	// group capacity, group list
+	private Map<Integer, Group> groups;			// group gid, group
 	private int gid_i = 0;
 	
 	@Override

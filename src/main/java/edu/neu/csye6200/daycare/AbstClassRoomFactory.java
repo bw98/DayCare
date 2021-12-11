@@ -4,5 +4,7 @@ import java.util.*;
 
 public abstract class AbstClassRoomFactory {
 	public abstract ClassRoom getObject();
-	public abstract ClassRoom getObject(List<Group> groups);
+	public abstract ClassRoom getObject(List<Group> groups, int id);
+	public abstract ClassRoom getObject(int id);
+
 }

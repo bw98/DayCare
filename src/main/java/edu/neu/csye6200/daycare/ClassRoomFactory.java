@@ -13,7 +13,12 @@ public class ClassRoomFactory extends AbstClassRoomFactory{
 		return new ClassRoom();
 	}
 	
-	public ClassRoom getObject(List<Group> groups) {
-		return new ClassRoom(groups);
+	public ClassRoom getObject(List<Group> groups, int id) {
+		return new ClassRoom(groups, id);
+	}
+
+	@Override
+	public ClassRoom getObject(int id) {
+		return new ClassRoom(id);
 	}
 }
