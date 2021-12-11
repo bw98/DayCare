@@ -69,12 +69,12 @@ public class VaccinePanel{
             public void actionPerformed(ActionEvent e) {
                 List<Student> students = GetStudents.get();
                 model.setRowCount(0);
-                String[] colName = new String[]{"Student ID", "FirstName", "LastName", "Age", "Vaccine", "Vaccine age(months)"};
+                String[] colName = new String[]{"Student ID", "FirstName", "LastName", "Age", "Vaccine", "Vaccine age"};
                 model.setColumnIdentifiers(colName);
                 for(edu.neu.csye6200.daycare.Student s : students){
                     for(Map.Entry<Vaccine, Vector<Integer>> mp : s.getImmuRecord().entrySet()){
                         for(int month : mp.getValue()){
-                            model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getFirstName(), s.getLastName(), String.valueOf(s.getAge()), mp.getKey().getName(), String.valueOf(month)});
+                            model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getFirstName(), s.getLastName(), String.valueOf(s.getAge()), mp.getKey().getName(), String.valueOf(month/12)});
                         }
 
                     }
@@ -122,9 +122,10 @@ public class VaccinePanel{
     }
 
     public static void writeVaccine(int id, String vaccine) throws IOException {
+        String sep = File.separator;
         List<Student> students = GetStudents.get();
         int row = 0;
-        File file = new File("src/main/java/edu/neu/csye6200/daycare/vaccineInfo/vaccine.txt");
+        File file = new File("src"+ sep +"main" + sep+ "java" + sep + "edu" + sep + "neu" + sep + "csye6200" + sep + "daycare" + sep + "vaccineInfo" + sep + "vaccine.csv");
         Student s = null;
         for(edu.neu.csye6200.daycare.Student ss : students){
             if(ss.getStudentId() == id){
@@ -134,7 +135,7 @@ public class VaccinePanel{
         Vaccine cur = VaccineFactory.getVaccine(vaccine);
         System.out.println(cur.getName());
         s.getImmuRecord().get(cur).add(s.getAge()*12);
-        try(BufferedReader inLine = new BufferedReader(new FileReader("src/main/java/edu/neu/csye6200/daycare/vaccineInfo/vaccine.txt"));){
+        try(BufferedReader inLine = new BufferedReader(new FileReader(file));){
             String in = null;
             while((in = inLine.readLine()) != null) {
                 String[] temp = in.split(",");
@@ -148,7 +149,7 @@ public class VaccinePanel{
             System.out.println("Caught an ERROR!");
             e.printStackTrace();
         }
-        List<String> lines = Files.readAllLines(new File("src/main/java/edu/neu/csye6200/daycare/vaccineInfo/vaccine.txt").toPath());
+        List<String> lines = Files.readAllLines(file.toPath());
         String newLine = lines.get(row) + "," + vaccine + "," + s.getAge()*12;
         lines.set(row, newLine);
         Files.write(file.toPath(), lines);

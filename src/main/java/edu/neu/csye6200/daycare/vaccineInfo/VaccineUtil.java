@@ -1,6 +1,7 @@
 package edu.neu.csye6200.daycare.vaccineInfo;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +11,8 @@ public class VaccineUtil {
 
     public static List<String> getVaccineList(int id){
         List<String> res = new ArrayList<>();
-        try(BufferedReader inLine = new BufferedReader(new FileReader("src/main/java/edu/neu/csye6200/daycare/vaccineInfo/vaccine.txt"));){
+        String sep = File.separator;
+        try(BufferedReader inLine = new BufferedReader(new FileReader("src" + sep + "main" + sep + "java" +sep +"edu"+sep+"neu" + sep + "csye6200" + sep + "daycare" + sep + "vaccineInfo" + sep+ "vaccine.csv"))){
             String in = null;
             while((in = inLine.readLine()) != null) {
                 String[] temp = in.split(",");

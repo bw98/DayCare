@@ -33,17 +33,6 @@ public class VaccineNotification {
                         doses -= eachMap.getValue();
                         continue;
                     }
-                    /*if(age < eachMap.getKey()[0] || age > eachMap.getKey()[1]){
-                        continue;
-                    }
-                    if(doses >= eachMap.getValue()){
-                        doses -= eachMap.getValue();
-                    }else{
-                        if(immu.getSeperateMonths() == 0 || s.getImmuRecord().get(immu).size() == 0 || immu.getSeperateMonths() != 0 && age - s.getImmuRecord().get(immu).get(s.getImmuRecord().get(immu).size() - 1) > immu.getSeperateMonths()){
-                            map.put(immu.getName(), eachMap.getValue() - doses);
-                        }
-                        break;
-                    }*/
 
                 }
             }

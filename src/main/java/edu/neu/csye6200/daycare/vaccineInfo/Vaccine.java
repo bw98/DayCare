@@ -8,7 +8,7 @@ public class Vaccine {
     private String name;
     private int doses;
     private int seperateMonths = 1;
-    Vector<ConcurrentHashMap<int[], Integer>> ageList;
+    private Vector<ConcurrentHashMap<int[], Integer>> ageList;
 
     public String getName() {
         return name;
