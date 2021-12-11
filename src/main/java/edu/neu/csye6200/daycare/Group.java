@@ -1,5 +1,7 @@
 package edu.neu.csye6200.daycare;
 
+import java.util.List;
+
 public class Group extends AbstGroup{
 	public class BadGroupSizeException extends Exception{
 
@@ -14,7 +16,7 @@ public class Group extends AbstGroup{
 		}
 	}
 
-	private int groupId = -1;
+	private int groupId;
 	private int size;
 	private int capacity;
 	private Teacher t;
@@ -32,6 +34,14 @@ public class Group extends AbstGroup{
 		this.capacity = capacity;
 		this.size = 0;
 		this.ss = null;
+	}
+
+	public Group(Teacher t, int capacity, int groupId) {
+		this.setTeacher(t);
+		this.capacity = capacity;
+		this.size = 0;
+		this.ss = new Students();
+		this.groupId = groupId;
 	}
 	
 	public Group(Teacher t, int capacity, Student[] ss) {
@@ -54,7 +64,7 @@ public class Group extends AbstGroup{
 	
 	@Override
 	public void addStudent(Student s) throws BadGroupSizeException {
-		if(this.capacity >= this.size) {
+		if(this.capacity == this.size) {
 			throw new BadGroupSizeException("Group is full!");
 		}
 		else {
@@ -63,14 +73,26 @@ public class Group extends AbstGroup{
 		}
 	}
 
+
 	@Override
 	public int getCurGroupSize() {
-		return this.capacity;
+		return this.ss.getStudents().size();
 	}
 	
+
 	@Override
 	public String toString() {
-		return "This group: " + getGroupId() + ", has teacher: " + getTeacher() + " and " + getCurGroupSize() + " Students:\n" + getStudents();
+		StringBuilder sb = new StringBuilder();
+		sb.append("group id: " + getGroupId() + "\t");
+		sb.append("group capacity: " + getCapacity() + "\t");
+		sb.append("current group size: " + getCurGroupSize() + "\t");
+		sb.append("teacher of this group: " + getTeacher().toString() + "\t");
+		sb.append("students of this group: ");
+		List<Person> studentList = getStudents().getStudents();
+		for (Person student : studentList) {
+			sb.append(student.toString());
+		}
+		return sb.toString();
 	}
 
 	public int getGroupId() {

@@ -28,33 +28,57 @@ public class Teachers extends AbstTeachers{
 	}
 	
 	public static Teachers parseTeachers(String csvFile) {
-		FileReader fr = null;
+//		FileReader fr = null;
+//		try {
+//			fr = new FileReader(csvFile);
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//			System.err.println("Please check your csv file!");
+//			return null;
+//		}
+//		FileUtil reader = new FileUtil(fr);
+//		Teachers ts = new Teachers();
+//		String line = null;
+//		try {
+//			while ((line = reader.readLine()) != null) {
+//				ts.add(Teacher.parseTeacherFromString(Arrays.asList(line.split(","))));
+//			}
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			System.err.println("File error. Line is: " + line);
+//
+//		}
+//
+//		try {
+//			reader.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return ts;
+
+		String CSVString = "";
+		String thisLine = null;
+
 		try {
-			fr = new FileReader(csvFile);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			System.err.println("Please check your csv file!");
-			return null;
-		} 
-		FileUtil reader = new FileUtil(fr);
-		Teachers ts = new Teachers();
-		String line = null;
-		try {
-			while ((line = reader.readLine()) != null) {
-				ts.add(Teacher.parseTeacherFromString(Arrays.asList(line.split(","))));
+			FileReader fr = new FileReader(csvFile);
+			BufferedReader br = new BufferedReader(fr);
+			while((thisLine = br.readLine()) != null) {
+				CSVString += thisLine + "\n";
 			}
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.err.println("File error. Line is: " + line);
-			
-		}
-		
-		try {
-			reader.close();
+			br.close();
+
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Teachers ts = new Teachers();
+		String[] arrayOfString = CSVString.split("\n");
+		for (String string : arrayOfString) {
+			List<String> list= Arrays.asList(string.split(","));
+			ts.add(Teacher.parseTeacherFromString(list));
+		}
+
 		return ts;
 		
 	}
