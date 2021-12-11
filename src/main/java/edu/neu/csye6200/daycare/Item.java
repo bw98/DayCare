@@ -8,10 +8,17 @@ public class Item {
 	private String title;
 	private JPanel jPanel;
 	private ActionListener actionListener;
+	private ActionListener wrapActionListener;
 	
-	Item(String title, JPanel jPanel) {
+	public Item(String title, JPanel jPanel) {
 		this.setTitle(title);
 		this.setjPanel(jPanel);
+	}
+	
+	Item(String title, JPanel jPanel, ActionListener actionListener) {
+		this.setTitle(title);
+		this.setjPanel(jPanel);
+		this.setActionListener(actionListener);
 	}
 
 	public String getTitle() {
@@ -36,5 +43,13 @@ public class Item {
 
 	public void setActionListener(ActionListener actionListener) {
 		this.actionListener = actionListener;
+	}
+
+	public ActionListener getWrapActionListener() {
+		return wrapActionListener;
+	}
+
+	public void setWrapActionListener(ActionListener wrapActionListener) {
+		this.wrapActionListener = wrapActionListener;
 	}
 }

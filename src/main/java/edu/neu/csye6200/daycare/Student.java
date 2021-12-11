@@ -69,7 +69,7 @@ public class Student extends Person implements Comparable<Student> {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		int id = -1;
 		Date registerDate = new Date();
-		Date renewDate = new Date();
+		Date renewDate = new Date(0);
 		int age = -1;
 		double gpa = 0;
 		System.out.println(tokens);

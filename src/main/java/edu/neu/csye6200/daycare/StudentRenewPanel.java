@@ -49,7 +49,15 @@ public class StudentRenewPanel {
 
         jPanel.add(deleteBtn);
 
-        return new Item("Student Renew", jPanel);
+        return new Item("Student Renew", jPanel, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				toItem();
+			}
+        	
+        });
     }
 
     private void readStudentsCSV() {
@@ -129,7 +137,7 @@ public class StudentRenewPanel {
                 "renewDate", "gpa", "phone", "address", "parentFirstName", "parentLastName"};
         SimpleDateFormat timeFt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        int row = 1 + students.size();  // 标题 + 所有对象数据
+        int row = 1 + students.size();  // 鏍囬 + 鎵�鏈夊璞℃暟鎹�
         int col = name.length;
 
         Object[][] tableData = new Object[row][col];
@@ -152,7 +160,13 @@ public class StudentRenewPanel {
                 } else if (name[j].equals("registerTime")) {
                     tableData[i][j] = timeFt.format(stu.getRegisterTime());
                 } else if (name[j].equals("renewDate")) {
-                    tableData[i][j] = timeFt.format(stu.getRenewDate());
+                    String renewDateStr = timeFt.format(stu.getRenewDate());
+                    String defaultRenewDateStr = timeFt.format(new Date(0));
+                    if (renewDateStr.equals(defaultRenewDateStr)) {
+                        tableData[i][j] = "";
+                    } else {
+                        tableData[i][j] = renewDateStr;
+                    }
                 } else if (name[j].equals("gpa")) {
                     tableData[i][j] = stu.getGpa();
                 } else if (name[j].equals("phone")) {
@@ -395,7 +409,8 @@ public class StudentRenewPanel {
         table.repaint();
     }
 
-    private static String studentCSVFile = "src/main/java/edu/neu/csye6200/daycare/students.csv";
+    // private static String studentCSVFile = "src/main/java/edu/neu/csye6200/daycare/students.csv";
+    private static String studentCSVFile = "src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "neu" + File.separator + "csye6200" + File.separator + "daycare" + File.separator + "students.csv";
     private List<Student> students;
     private JPanel jPanel;
     private JTable table;

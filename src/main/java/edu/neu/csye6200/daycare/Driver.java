@@ -23,6 +23,7 @@ public class Driver {
         JPanel vaccinePanel = VaccinePanel.getPanel();
         menu.registerItem(new Item("Vaccine", vaccinePanel));
         menu.registerItem((new PersonRenewPanel()).toItem());
+        menu.registerItem(new VaccinePanel().toItem());
         menu.show();
     }
 }
