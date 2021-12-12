@@ -22,14 +22,19 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+# MACOS
+.DS_Store
+
 # IDEA local config and output
 .idea/
 target/
 *.iml
 build/
 out/
-.DS_Store
+
 
 # Eclipse config
 .metadata/
 .settings/
+.classpath
+.project
