@@ -189,7 +189,12 @@ public class StudentRenewPanel {
         table.setModel(model);
 
         table.setBounds(75, 0, 800, 180);
-        jPanel.add(table);
+
+        JScrollPane jsp = new JScrollPane(table);
+        jsp.setBounds(50, 0, 850, 185);
+
+        // jPanel.add(table);
+        jPanel.add(jsp);
     }
 
     private void updateTable() {
