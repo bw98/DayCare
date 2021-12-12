@@ -210,18 +210,21 @@ public class StudentRenewPanel {
                 "renewDate", "gpa", "phone", "address", "parentFirstName", "parentLastName"};
         SimpleDateFormat timeFt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        int row = 1 + students.size();  // 鏍囬 + 鎵�鏈夊璞℃暟鎹�
+        // int row = 1 + students.size();  // 鏍囬 + 鎵�鏈夊璞℃暟鎹�
+        int row = students.size();  // 鏍囬 + 鎵�鏈夊璞℃暟鎹�
         int col = name.length;
 
         Object[][] tableData = new Object[row][col];
 
-        for (int i = 0; i < name.length; i++) {
-            tableData[0][i] = name[i];
-        }
+        // for (int i = 0; i < name.length; i++) {
+        //     tableData[0][i] = name[i];
+        // }
 
-        for (int i = 1; i < row; i++) {
+        // for (int i = 1; i < row; i++) {
+        for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                Student stu = students.get(i - 1);
+                // Student stu = students.get(i - 1);
+                Student stu = students.get(i);
                 if (name[j].equals("studentId")) {
                     tableData[i][j] = stu.getStudentId();
                 } else if (name[j].equals("age")) {
