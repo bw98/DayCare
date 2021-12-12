@@ -1,6 +1,8 @@
 package edu.neu.csye6200.daycare;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Teachers extends AbstTeachers{
@@ -108,7 +110,9 @@ public class Teachers extends AbstTeachers{
 		return ts;
 	}
 
-
+	public int getNumber() {
+		return ts.size();
+	}
 	public Iterator<Person> iterator() {
 		return ts.iterator();
 	}
@@ -116,5 +120,39 @@ public class Teachers extends AbstTeachers{
 	@Override 
 	public String toString() {
 		return ts.toString();
+	}
+	
+	public void update_renew_date(int id,String date) throws ParseException {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		for(Person s: this.ts) {
+			if(s instanceof Teacher) {
+				if(((Teacher)s).getTeacherId()==id) {
+					// System.out.println(df.parse(date));
+					s.setRenewDate(df.parse(date));
+					// System.out.println(s.getRenewDate());
+				}
+			}
+		}
+		
+	}
+	
+	public void write_to_csv(String csvFile) throws Exception {
+		FileWriter fw=null;
+		try {
+			fw=new FileWriter(csvFile);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Please check your csv file!");
+			// TODO: handle exception
+		}
+		FileUtil writer=new FileUtil(fw);
+		for(Person s:ts) {
+			if(s instanceof Teacher) {
+				writer.write(Teacher.serialize((Teacher)s));
+			}
+		}
+		writer.close();
+		
 	}
 }

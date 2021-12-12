@@ -135,6 +135,7 @@ public class PersonRenewPanel extends JPanel{
 //		add(new JScrollPane(table),BorderLayout.CENTER);
 		
 		panel.add(renewButton);
+		
 	}
 	
 	protected void renew_person(ActionEvent e) throws Exception {
