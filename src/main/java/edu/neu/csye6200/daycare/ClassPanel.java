@@ -41,7 +41,7 @@ public class ClassPanel {
 	        
 	        DefaultTableModel model = new DefaultTableModel();
 	        model.setColumnCount(5);
-	        String[] colName = new String[]{"Room ID", "Room Capacity", "Current Room Size", "Groups ID", "Level"};
+	        String[] colName = new String[]{"Room ID", "Room Capacity", "Current Room Size", "Groups ID", "Max Group Capacity"};
 	        model.setColumnIdentifiers(colName);
 	        showButton.addActionListener(new ActionListener() {
 	            @Override
