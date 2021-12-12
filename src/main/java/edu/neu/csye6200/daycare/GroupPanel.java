@@ -23,7 +23,7 @@ public class GroupPanel {
         JButton showButton = new JButton("Show Groups");
         showButton.setBounds(30,100,200,50);
 
-        rule = new GroupRule();
+//        rule = new GroupRule();
 
         generateButton.addActionListener(new ActionListener() {
             @Override
@@ -92,8 +92,8 @@ public class GroupPanel {
 //        jTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane jsp = new JScrollPane(jTable);
 
-        jsp.setBounds(300, 10, 1000, 700);
-        jTable.setBounds(300, 100, 1000, 700);
+        jsp.setBounds(300, 10, 1200, 700);
+        jTable.setBounds(300, 100, 1200, 700);
         jPanel.add(jsp);
 
 

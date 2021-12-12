@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 
 public class ClassPanel {
 	GroupRule rule;
+	ClassRoomRule cr;
 	public Item toItem() {
 	        JPanel jPanel = new JPanel();
 	        jPanel.setLayout(null);
@@ -21,13 +22,12 @@ public class ClassPanel {
 	        JButton showButton = new JButton("Show Classrooms");
 	        showButton.setBounds(30,100,200,50);
 
-	        rule = new GroupRule();
-	        ClassRoomRule cr = new ClassRoomRule(rule);
 	        generateButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	                rule = new GroupRule();
-	                String sep = File.separator;
+					rule = new GroupRule();
+					cr = new ClassRoomRule(rule);
+					String sep = File.separator;
 	                Students ss = Students.parseStudents("src"+sep+"main"+sep+"java"+sep+"edu"+sep+"neu"+sep+"csye6200"+sep+"daycare"+sep+"students.csv");
 	                Teachers ts = Teachers.parseTeachers("src"+sep+"main"+sep+"java"+sep+"edu"+sep+"neu"+sep+"csye6200"+sep+"daycare"+sep+"teachers.csv");
 	                try {
@@ -38,6 +38,7 @@ public class ClassPanel {
 	                cr.setClassRooms((new ClassRoomRule(rule)).getClassrooms());;
 	            }
 	        });
+	        
 	        
 	        DefaultTableModel model = new DefaultTableModel();
 	        model.setColumnCount(5);
@@ -52,7 +53,7 @@ public class ClassPanel {
 	                	List<Group> gl = c.getValue().getGroups();
 	                	String gids = "";
 	                	for(Group g : gl) {
-	                		gids = gids + g.getGroupId() + " ";
+	                		gids = gids + g.getGroupId() + ", ";
 	                	}
 	            		model.addRow(new String[] {
 	            				String.valueOf(c.getValue().getCid()),
