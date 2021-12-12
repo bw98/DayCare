@@ -8,7 +8,8 @@ package edu.neu.csye6200.daycare;
 //import java.util.Arrays;
 //import java.util.List;
 
-import edu.neu.csye6200.daycare.vaccineInfo.VaccinePanel;
+import edu.neu.csye6200.daycare.view.VaccinePanel;
+import edu.neu.csye6200.daycare.view.*;
 
 public class Driver {
     public static void main(String[] args) {
@@ -19,9 +20,9 @@ public class Driver {
 //        menu.registerItem(new TeacherPanel().toItem());
         menu.registerItem((new StudentUpdatePanel()).toItem());
         menu.registerItem((new PersonRenewPanel()).toItem());
+        menu.registerItem(new TeacherReviewPanel().toItem());
         menu.registerItem(new VaccinePanel().toItem());
         menu.registerItem(new GroupPanel().toItem());
-        menu.registerItem(new TeacherReviewPanel().toItem());
         menu.registerItem(new ClassPanel().toItem());
         //menu.registerItem(new TeacherReviewPanel().toItem());
 
