@@ -14,7 +14,7 @@ import javax.swing.*;
 
 public class Driver {
     public static void main(String[] args) {
-        System.out.println("driver demo");
+        // System.out.println("driver demo");
         
         Menu menu = new Menu();
         menu.registerItem((new StudentPanel()).toItem());
@@ -23,7 +23,7 @@ public class Driver {
         menu.registerItem((new PersonRenewPanel()).toItem());
         menu.registerItem(new VaccinePanel().toItem());
         menu.registerItem(new GroupPanel().toItem());
-//        menu.registerItem(new ClassPanel().toItem());
+        menu.registerItem(new ClassPanel().toItem());
 
         menu.show();
     }

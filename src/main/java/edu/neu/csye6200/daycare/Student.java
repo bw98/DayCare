@@ -27,18 +27,18 @@ public class Student extends Person implements Comparable<Student> {
 	public void setImmuRecord(){
 		List<String> record = VaccineUtil.getVaccineList(this.studentId);
 		if(record.isEmpty()){
-			System.out.println("record empty");
+			// System.out.println("record empty");
 			return;
 		}
 		int l = 1, r = record.size() - 1;
 		if((r - l) % 2 == 0){
-			System.out.println("err");
+			// System.out.println("err");
 			return;
 		}
 		for(int i = l; i <= r; i+= 2){
 			Vaccine temp = VaccineFactory.getVaccine(record.get(i));
 			if(temp == null){
-				System.out.println("Student init vaccine err!");
+				// System.out.println("Student init vaccine err!");
 				continue;
 			}
 			immuRecord.putIfAbsent(temp, new Vector<>());
@@ -72,7 +72,7 @@ public class Student extends Person implements Comparable<Student> {
 		Date renewDate = new Date(0);
 		int age = -1;
 		double gpa = 0;
-		System.out.println(tokens);
+		// System.out.println(tokens);
 		try {
 			id = Integer.parseInt(tokens.get(0));
 		} catch (NumberFormatException e) {
@@ -92,12 +92,12 @@ public class Student extends Person implements Comparable<Student> {
 		}
 		
 		try {
-			System.out.println(tokens.get(3));
+			// System.out.println(tokens.get(3));
 			registerDate=df.parse(tokens.get(3));
 			
-			System.out.println(registerDate);
+			// System.out.println(registerDate);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		if(tokens.get(4)=="") {
 			renewDate=null;
@@ -106,7 +106,7 @@ public class Student extends Person implements Comparable<Student> {
 			try {
 				renewDate = df.parse(tokens.get(4));
 			} catch (ParseException e) {
-				e.printStackTrace();
+				// e.printStackTrace();
 			}
 		}
 		

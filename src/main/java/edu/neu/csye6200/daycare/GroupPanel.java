@@ -128,7 +128,7 @@ public class GroupPanel {
                     // TODO Auto-generated method stub
                     Point mousepoint;
                     mousepoint =e.getPoint();
-                    System.out.println(jTable.rowAtPoint(mousepoint)+1);
+                    // System.out.println(jTable.rowAtPoint(mousepoint)+1);
 
                 }
             });

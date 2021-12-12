@@ -36,18 +36,18 @@ public class Student {
     public void setImmuRecord(){
         List<String> record = VaccineUtil.getVaccineList(this.studentId);
         if(record.isEmpty()){
-            System.out.println("record empty");
+            // System.out.println("record empty");
             return;
         }
         int l = 1, r = record.size() - 1;
         if((r - l) % 2 == 0){
-            System.out.println("err");
+            // System.out.println("err");
             return;
         }
         for(int i = l; i <= r; i+= 2){
             Vaccine temp = VaccineFactory.getVaccine(record.get(i));
             if(temp == null){
-                System.out.println("Student init vaccine err!");
+                // System.out.println("Student init vaccine err!");
                 continue;
             }
             immuRecord.putIfAbsent(temp, new Vector<>());

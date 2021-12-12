@@ -22,7 +22,7 @@ public class VaccineUtil {
                 }
             }
         }catch(Exception e) {
-            System.out.println("Caught an ERROR!");
+            // System.out.println("Caught an ERROR!");
             e.printStackTrace();
         }
 

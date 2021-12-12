@@ -236,7 +236,6 @@ public class PersonRenewPanel extends JPanel{
 				case 6:
 					if(a instanceof Student) {
 						tableData[i][j]=((Student) a).getParentFirstName()+" "+((Student) a).getParentLastName();
-						System.out.println(tableData[i][j]);
 					}
 					break;
 					

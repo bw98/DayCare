@@ -211,11 +211,11 @@ public class ClassRoomRule extends AbstClassRule{
 
 		List<Group> gs = Arrays.asList(g1,g2,g3,g4,g5,g6,g7,g8,g9,g10);
 		ClassRoomRule r = new ClassRoomRule(gs);
-		System.out.println(r + "\n");
+		// System.out.println(r + "\n");
 		r.assignGroup(g11);
 //		for (Entry<Integer, ClassRoom> e:r.getClassrooms().entrySet()) {
 //			System.out.println(e.getValue());
 //		}
-		System.out.println(r);
+		// System.out.println(r);
 	}
 }

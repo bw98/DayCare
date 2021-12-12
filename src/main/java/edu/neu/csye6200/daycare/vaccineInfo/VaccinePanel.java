@@ -133,7 +133,7 @@ public class VaccinePanel{
             }
         }
         Vaccine cur = VaccineFactory.getVaccine(vaccine);
-        System.out.println(cur.getName());
+        // System.out.println(cur.getName());
         s.getImmuRecord().get(cur).add(s.getAge()*12);
         try(BufferedReader inLine = new BufferedReader(new FileReader(file));){
             String in = null;
@@ -146,7 +146,7 @@ public class VaccinePanel{
                 row++;
             }
         }catch(Exception e) {
-            System.out.println("Caught an ERROR!");
+            // System.out.println("Caught an ERROR!");
             e.printStackTrace();
         }
         List<String> lines = Files.readAllLines(file.toPath());

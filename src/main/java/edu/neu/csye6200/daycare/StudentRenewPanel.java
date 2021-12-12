@@ -467,7 +467,7 @@ public class StudentRenewPanel {
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int studentId = (int) model.getValueAt(selectedRow, 0);
-        System.out.println("deleting studentId = " + studentId);
+        // System.out.println("deleting studentId = " + studentId);
         deleteStudentByStudentId(studentId);
 
         model.removeRow(selectedRow);

@@ -65,7 +65,7 @@ public class StudentPanel {
 					bw.newLine();
 					bw.write(String.valueOf(student.getStudentId()));
 					bw.close();
-					System.out.println(student.getStudentId());
+					// System.out.println(student.getStudentId());
 
 				} catch (Exception excpt) {
 					excpt.printStackTrace();
