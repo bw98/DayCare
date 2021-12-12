@@ -47,7 +47,7 @@ public class Menu {
 	}
 
 	public void show() {
-		JFrame jFrame = new JFrame("demo");
+		JFrame jFrame = new JFrame("Day Care");
 		jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		// add buttons for all items
