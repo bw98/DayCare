@@ -147,11 +147,13 @@ public class ClassRoomRule extends AbstClassRule{
 		this.cid = cid;
 	}
 
-	private Map<Integer, ClassRoom> getClassrooms() {
+	@Override
+	public Map<Integer, ClassRoom> getClassrooms() {
 		return rooms;
 	}
-
-	private void setClassRooms(Map<Integer, ClassRoom> c) {
+	
+	@Override
+	public void setClassRooms(Map<Integer, ClassRoom> c) {
 		this.rooms = c;
 	}
 

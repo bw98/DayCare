@@ -23,6 +23,8 @@ public class Driver {
         menu.registerItem((new PersonRenewPanel()).toItem());
         menu.registerItem(new VaccinePanel().toItem());
         menu.registerItem(new GroupPanel().toItem());
+        menu.registerItem(new ClassPanel().toItem());
+
         menu.show();
     }
 }

@@ -93,6 +93,6 @@ public class ClassRoom extends AbstClassRoom{
 	
 	@Override
 	public String toString() {
-		return "Class room id: "+ this.getCid() + " Capacity: " + this.getCapacity() + " Level: "+ this.getLevel() + " Current size: " + this.getSize();
+		return "Class room id: "+ this.getCid() + " Capacity: " + this.getCapacity() + " Level: "+ this.getLevel() + " Current size: " + this.getSize() + "Groups: " + this.getGroups();
 	}
 }
