@@ -5,7 +5,6 @@ import java.util.*;
 import edu.neu.csye6200.daycare.Group.BadGroupSizeException;
 
 public class GroupRule extends AbstGroupRule{
-
 	private Map<Integer, List<Group>> groupMap;
 	private Map<Integer, Group> groups;
 
@@ -13,30 +12,20 @@ public class GroupRule extends AbstGroupRule{
 		return groupMap;
 	}
 
-
 	@Override
-	public int assign(Student s, Teacher t) {
+	public void assign(Student s, Teacher t) {
 		int gid = t.getGroupNum();
-		Group g = null;
-		if (gid == -1) {
-			g = new Group(t, ++gid_i);
-		}
-		else {
-			g = groups.get(gid);
-		}
+		Group g = groups.get(gid);
 		try {
 			g.addStudent(s);
 		} catch (BadGroupSizeException e) {
 			e.printStackTrace();
 			System.err.println("Group full, student not added!");
-			return -1;
 		}
-		return 0;
 	}
 
 
 	@Override
-
 	public Map<Integer, List<Group>> generateGroups(Teachers ts, Students ss) throws BadGroupSizeException {
 		groupMap = new HashMap<>();
 		List<Person> studentsList = ss.getStudents();
@@ -133,5 +122,7 @@ public class GroupRule extends AbstGroupRule{
 		}
 		return groupMap;
 	}
+
+
 
 }
