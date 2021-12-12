@@ -1,5 +1,6 @@
 package edu.neu.csye6200.daycare;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -88,8 +89,9 @@ public class TeacherPanel {
 						add(addressField.getText());
 					}
 				});
-				
-				try (FileUtil fUtility = new FileUtil(new FileWriter("src\\main\\java\\edu\\neu\\csye6200\\daycare\\teachers.csv", true))) {
+
+				String sep = File.separator;
+				try (FileUtil fUtility = new FileUtil(new FileWriter("src"+sep+"main"+sep+"java"+sep+"edu"+sep+"neu"+sep+"csye6200"+sep+"daycare"+sep+"teachers.csv"))) {
 					fUtility.write("\n" + Teacher.serialize(teacher));
 					
 				} catch (Exception excpt) {

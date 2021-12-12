@@ -16,7 +16,7 @@ public class Teacher extends Person implements Comparable<Teacher>{
 	private int groupNum;
 	
 	public Teacher(int teacherId, int age, int credit, Date registerTime, String firstName, String lastName, int classRoomNum, int groupNum, String phone, String address) {
-		super(age, lastName, firstName, registerTime, null);
+		super(age, firstName, lastName, registerTime, null);
 		this.teacherId = teacherId;
 		this.phone = phone;
 		this.credits = credit;
