@@ -21,8 +21,7 @@ public class ClassPanel {
 	        showButton.setBounds(30,100,200,50);
 
 	        GroupRule rule = new GroupRule();
-	        
-
+	        ClassRoomRule cr = new ClassRoomRule(rule);
 	        generateButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
@@ -34,10 +33,11 @@ public class ClassPanel {
 	                } catch (Group.BadGroupSizeException badGroupSizeException) {
 	                    badGroupSizeException.printStackTrace();
 	                }
+	                cr.setClassRooms((new ClassRoomRule(rule)).getClassrooms());;
 	            }
 	        });
 	        
-	        ClassRoomRule cr = new ClassRoomRule(rule);
+	        System.out.println(rule.getGroups().toString());
 	        
 	        DefaultTableModel model = new DefaultTableModel();
 	        model.setColumnCount(5);

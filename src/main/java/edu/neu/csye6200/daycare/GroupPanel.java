@@ -34,6 +34,7 @@ public class GroupPanel {
             }
         });
 
+        
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnCount(5);
         String[] colName = new String[]{"Group ID", "Group Capacity", "Current Group Size", "Teacher", "Students"};
@@ -44,7 +45,6 @@ public class GroupPanel {
                 Map<Integer, List<Group>>  groupMap = rule.getGroupMap();
                 model.setRowCount(0);
                 model.setColumnIdentifiers(colName);
-
                 for (Integer key : groupMap.keySet()) {
                     for (Group group : groupMap.get(key)) {
                         List<Person> studentList= group.getStudents().getStudents();

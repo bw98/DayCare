@@ -5,16 +5,12 @@ import java.util.*;
 import edu.neu.csye6200.daycare.Group.BadGroupSizeException;
 
 public class GroupRule extends AbstGroupRule{
-	private Map<Integer, List<Group>> groupMap;
-	private Map<Integer, Group> groups;
+	private Map<Integer, List<Group>> groupMap = new HashMap<>();
+	private Map<Integer, Group> groups = new HashMap<>();
 
 	public Map<Integer, Group> getGroups() {
-		groups = new HashMap<>();
-		for (Integer key : this.groupMap.keySet()) {
-			for (Group group : this.groupMap.get(key)) {
-				groups.put(group.getGroupId(), group);
-			}
-		}
+//		System.out.println();
+		
 		return groups;
 	}
 
@@ -41,7 +37,6 @@ public class GroupRule extends AbstGroupRule{
 
 	@Override
 	public Map<Integer, List<Group>> generateGroups(Teachers ts, Students ss) throws BadGroupSizeException {
-		groupMap = new HashMap<>();
 		List<Person> studentsList = ss.getStudents();
 		List<Person> teachersList = ts.getTeachers();
         int tlIndex = 0;
@@ -132,6 +127,11 @@ public class GroupRule extends AbstGroupRule{
 				} else {
 					groupList.get(groupList.size() - 1).addStudent((Student)student);
 				}
+			}
+		}
+		for (Integer key : this.groupMap.keySet()) {
+			for (Group group : this.groupMap.get(key)) {
+				groups.put(group.getGroupId(), group);
 			}
 		}
 		return groupMap;
