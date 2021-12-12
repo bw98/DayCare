@@ -29,8 +29,8 @@ public class TeacherFactory extends AbstractPersonFactory{
 	 * @param address
 	 * @return
 	 */
-	public Person getObject(int teacherId, int age, int credit, Date registerTime, String firstName, String lastName, int classRoomNum, int groupNum, String phone, String address) {
-		return new Teacher(teacherId, age, credit, registerTime, firstName, lastName, -1, -1, phone, address);
+	public Person getObject(int teacherId, int age, int credit, Date registerTime,Date renewDate ,String firstName, String lastName, int classRoomNum, int groupNum, String phone, String address) {
+		return new Teacher(teacherId, age, credit, registerTime, renewDate, firstName,lastName, -1, -1, phone, address);
 	}
 
 }

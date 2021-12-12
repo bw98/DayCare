@@ -15,8 +15,8 @@ public class Teacher extends Person implements Comparable<Teacher>{
 	private int classRoomNum;
 	private int groupNum;
 	
-	public Teacher(int teacherId, int age, int credit, Date registerTime, String firstName, String lastName, int classRoomNum, int groupNum, String phone, String address) {
-		super(age, firstName, lastName, registerTime, null);
+	public Teacher(int teacherId, int age, int credit, Date registerTime,Date renewDate, String firstName, String lastName, int classRoomNum, int groupNum, String phone, String address) {
+		super(age, firstName, lastName, registerTime, renewDate);
 		this.teacherId = teacherId;
 		this.phone = phone;
 		this.credits = credit;
@@ -121,25 +121,36 @@ public class Teacher extends Person implements Comparable<Teacher>{
 			e.printStackTrace();
 		}
 		
-		String lastName = tokens.get(4);
-		String firstName = tokens.get(5);
+		if(tokens.get(4)=="") {
+			renewDate=null;
+		}
+		else {
+			try {
+				renewDate = df.parse(tokens.get(4));
+			} catch (ParseException e) {
+				// e.printStackTrace();
+			}
+		}
+		
+		String lastName = tokens.get(5);
+		String firstName = tokens.get(6);
 		
 		try {
-			classRoomNum = Integer.parseInt(tokens.get(6));
+			classRoomNum = Integer.parseInt(tokens.get(10));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			groupNum = Integer.parseInt(tokens.get(7));
+			groupNum = Integer.parseInt(tokens.get(11));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		
-		String phone = tokens.get(8);
-		String address = tokens.get(9);
+		String phone = tokens.get(7);
+		String address = tokens.get(8);
 		
-		return new Teacher(id, age, credits, date, lastName, firstName, classRoomNum, groupNum, phone, address);
+		return new Teacher(id, age, credits, date, renewDate, firstName, lastName,classRoomNum, groupNum, phone, address);
 	}
 	
 	public static String serialize(Teacher t) {
@@ -153,6 +164,13 @@ public class Teacher extends Person implements Comparable<Teacher>{
 		sBuffer.append(t.getCredits());
 		sBuffer.append(',');
 		sBuffer.append(df.format(t.getRegisterTime()));
+		sBuffer.append(',');
+		if(t.getRenewDate()==null) {
+			sBuffer.append("");
+		}
+		else {
+			sBuffer.append(df.format(t.getRenewDate()));
+		}
 		sBuffer.append(',');
 		sBuffer.append(t.getLastName());
 		sBuffer.append(',');

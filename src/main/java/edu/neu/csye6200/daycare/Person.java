@@ -55,6 +55,7 @@ public class Person {
 	}
 
 	public Date getRenewDate() {
+		//System.out.println(renewDate);
 		return renewDate;
 	}
 
