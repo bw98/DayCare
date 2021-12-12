@@ -5,14 +5,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 
 public class ClassPanel {
 
-	 public Item toItem() {
+	 @SuppressWarnings("serial")
+	public Item toItem() {
 	        JPanel jPanel = new JPanel();
 	        jPanel.setLayout(null);
 	        JButton generateButton = new JButton("Generate Classrooms");
@@ -37,7 +36,6 @@ public class ClassPanel {
 	            }
 	        });
 	        
-	        System.out.println(rule.getGroups().toString());
 	        
 	        DefaultTableModel model = new DefaultTableModel();
 	        model.setColumnCount(5);
