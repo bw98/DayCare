@@ -26,6 +26,7 @@ public class ClassPanel {
 	        generateButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
+	                rule = new GroupRule();
 	                String sep = File.separator;
 	                Students ss = Students.parseStudents("src"+sep+"main"+sep+"java"+sep+"edu"+sep+"neu"+sep+"csye6200"+sep+"daycare"+sep+"students.csv");
 	                Teachers ts = Teachers.parseTeachers("src"+sep+"main"+sep+"java"+sep+"edu"+sep+"neu"+sep+"csye6200"+sep+"daycare"+sep+"teachers.csv");
@@ -37,7 +38,6 @@ public class ClassPanel {
 	                cr.setClassRooms((new ClassRoomRule(rule)).getClassrooms());;
 	            }
 	        });
-	        
 	        
 	        DefaultTableModel model = new DefaultTableModel();
 	        model.setColumnCount(5);
