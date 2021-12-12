@@ -9,6 +9,12 @@ public class GroupRule extends AbstGroupRule{
 	private Map<Integer, Group> groups;
 
 	public Map<Integer, Group> getGroups() {
+		groups = new HashMap<>();
+		for (Integer key : this.groupMap.keySet()) {
+			for (Group group : this.groupMap.get(key)) {
+				groups.put(group.getGroupId(), group);
+			}
+		}
 		return groups;
 	}
 
@@ -84,13 +90,13 @@ public class GroupRule extends AbstGroupRule{
 				} else {
 					groupList.get(groupList.size() - 1).addStudent((Student)student);
 				}
-			} else if (student.getAge() >= 63 && student.getAge() <= 47) {
+			} else if (student.getAge() >= 36 && student.getAge() <= 47) {
 				if (!groupMap.containsKey(8)) {
 					groupMap.put(8, new ArrayList<>());
 				}
 				List<Group> groupList = groupMap.get(8);
 				if (groupList.size() == 0 || groupList.get(groupList.size() - 1).getCurGroupSize() == 8) {
-					Group group = new Group((Teacher)teachersList.get(tlIndex), 7, groupId);
+					Group group = new Group((Teacher)teachersList.get(tlIndex), 8, groupId);
 					tlIndex++;
 					groupId++;
 					group.addStudent((Student)student);
@@ -104,7 +110,7 @@ public class GroupRule extends AbstGroupRule{
 				}
 				List<Group> groupList = groupMap.get(12);
 				if (groupList.size() == 0 || groupList.get(groupList.size() - 1).getCurGroupSize() == 12) {
-					Group group = new Group((Teacher)teachersList.get(tlIndex), 5, groupId);
+					Group group = new Group((Teacher)teachersList.get(tlIndex), 12, groupId);
 					tlIndex++;
 					groupId++;
 					group.addStudent((Student)student);
