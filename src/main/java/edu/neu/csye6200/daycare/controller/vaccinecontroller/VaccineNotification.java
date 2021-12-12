@@ -12,7 +12,7 @@ public class VaccineNotification {
 
     public static Map<String, Integer> getNotification(Student s){
         Map<String, Integer> map = new HashMap<>();
-        int age = s.getAge() * 12;
+        int age = s.getAge();
         VaccineFactory.getInstance();
         Vector<Vaccine> list = VaccineFactory.getObject();
         for(Vaccine immu : list){
