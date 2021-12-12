@@ -29,3 +29,7 @@ target/
 build/
 out/
 .DS_Store
+
+# Eclipse config
+.metadata/
+.settings/

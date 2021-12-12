@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class StudentRenewPanel {
+public class StudentUpdatePanel {
 
     public Item toItem() {
         jPanel = new JPanel();
