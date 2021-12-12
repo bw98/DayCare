@@ -20,7 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
-public class PersonRenewPanel extends JPanel{
+public class StudentCheckinPanel extends JPanel{
 	private JScrollPane sp=null;
 	private JTable table=null;
 	String[] titles= {"id","age","gpa","register_date","renew_date","name","parent_name","phone","address"};
@@ -39,7 +39,7 @@ public class PersonRenewPanel extends JPanel{
 			}
 		});
 	}
-	public PersonRenewPanel() {
+	public StudentCheckinPanel() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		setLayout(new BorderLayout(0,0));
 		JPanel panel=new JPanel();

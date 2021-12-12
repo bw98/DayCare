@@ -19,7 +19,7 @@ public class Driver {
         menu.registerItem((new StudentPanel()).toItem());
 //        menu.registerItem(new TeacherPanel().toItem());
         menu.registerItem((new StudentUpdatePanel()).toItem());
-        menu.registerItem((new PersonRenewPanel()).toItem());
+        menu.registerItem((new StudentCheckinPanel()).toItem());
         menu.registerItem(new TeacherReviewPanel().toItem());
         menu.registerItem(new VaccinePanel().toItem());
         menu.registerItem(new GroupPanel().toItem());
