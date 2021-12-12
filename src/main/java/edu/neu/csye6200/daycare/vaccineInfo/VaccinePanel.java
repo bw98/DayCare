@@ -140,13 +140,11 @@ public class VaccinePanel{
             while((in = inLine.readLine()) != null) {
                 String[] temp = in.split(",");
                 if(Integer.valueOf(temp[0]) == id){
-
                     break;
                 }
                 row++;
             }
         }catch(Exception e) {
-            // System.out.println("Caught an ERROR!");
             e.printStackTrace();
         }
         List<String> lines = Files.readAllLines(file.toPath());

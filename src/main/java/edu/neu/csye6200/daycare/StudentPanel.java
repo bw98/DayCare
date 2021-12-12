@@ -62,8 +62,8 @@ public class StudentPanel {
 					excpt.printStackTrace();
 				}
 				try (BufferedWriter bw = new BufferedWriter(new FileWriter("src"+sep+"main"+sep+"java"+sep+"edu"+sep+"neu"+sep+"csye6200"+sep+"daycare"+sep+"vaccineInfo"+sep+"vaccine.csv", true))) {
-					bw.newLine();
 					bw.write(String.valueOf(student.getStudentId()));
+					bw.newLine();
 					bw.close();
 					// System.out.println(student.getStudentId());
 

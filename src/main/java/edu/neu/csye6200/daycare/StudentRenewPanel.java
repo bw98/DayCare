@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +32,11 @@ public class StudentRenewPanel {
         changeBtn.setText("Change");
         changeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChangeActionPerformed(evt);
+                try {
+                    btnChangeActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -43,7 +48,11 @@ public class StudentRenewPanel {
         deleteBtn.setBounds(275, 580, 200, 25);
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                try {
+                    btnDeleteActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -356,13 +365,59 @@ public class StudentRenewPanel {
 
     }
 
-    private void updateStudentAndTable(int selectedRow, int studentId) {
+    public void updateStudentId(Student s, int id) throws IOException {
+        String sep = File.separator;
+        File file = new File("src"+ sep +"main" + sep+ "java" + sep + "edu" + sep + "neu" + sep + "csye6200" + sep + "daycare" + sep + "vaccineInfo" + sep + "vaccine.csv");
+        int row = 0;
+        try(BufferedReader inLine = new BufferedReader(new FileReader(file));){
+            String in = null;
+            while((in = inLine.readLine()) != null) {
+                String[] temp = in.split(",");
+                if(Integer.valueOf(temp[0]) == s.getStudentId()){
+                    break;
+                }
+                row++;
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        List<String> lines = Files.readAllLines(file.toPath());
+        String newLine = lines.get(row);
+        newLine = newLine.replace(String.valueOf(s.getStudentId()), String.valueOf(id));
+        lines.set(row, newLine);
+        Files.write(file.toPath(), lines);
+    }
+
+    public void deleteStudent(Student s) throws IOException {
+        String sep = File.separator;
+        File file = new File("src"+ sep +"main" + sep+ "java" + sep + "edu" + sep + "neu" + sep + "csye6200" + sep + "daycare" + sep + "vaccineInfo" + sep + "vaccine.csv");
+        int row = 0;
+        try(BufferedReader inLine = new BufferedReader(new FileReader(file));){
+            String in = null;
+            while((in = inLine.readLine()) != null) {
+                String[] temp = in.split(",");
+                if(Integer.valueOf(temp[0]) == s.getStudentId()){
+                    break;
+                }
+                row++;
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        List<String> lines = Files.readAllLines(file.toPath());
+        lines.remove(row);
+        Files.write(file.toPath(), lines);
+    }
+
+    private void updateStudentAndTable(int selectedRow, int studentId) throws IOException {
         SimpleDateFormat timeFt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         for (Student stu : students) {
             if (stu.getStudentId() == studentId) {
                 if (txtStudentId.getText().length() > 0) {
-                    stu.setStudentId(Integer.parseInt(txtStudentId.getText()));
+                    int newId = Integer.parseInt(txtStudentId.getText());
+                    updateStudentId(stu, newId);
+                    stu.setStudentId(newId);
                     table.setValueAt(stu.getStudentId(), selectedRow, 0);
                 }
 
@@ -433,7 +488,7 @@ public class StudentRenewPanel {
         writeStudentsCSV();
     }
 
-    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         int selectedRow = table.getSelectedRow();
         if (selectedRow < 0) {
             return;
@@ -447,10 +502,11 @@ public class StudentRenewPanel {
         table.repaint();
     }
 
-    private void deleteStudentByStudentId(int studentId) {
+    private void deleteStudentByStudentId(int studentId) throws IOException {
         for (Student stu : students) {
             if (stu.getStudentId() == studentId) {
                 students.remove(stu);
+                deleteStudent(stu);
                 break;
             }
         }
@@ -458,7 +514,7 @@ public class StudentRenewPanel {
         writeStudentsCSV();
     }
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         int selectedRow = table.getSelectedRow();
         if (selectedRow < 0) {
             return;
@@ -468,7 +524,6 @@ public class StudentRenewPanel {
         int studentId = (int) model.getValueAt(selectedRow, 0);
         // System.out.println("deleting studentId = " + studentId);
         deleteStudentByStudentId(studentId);
-
         model.removeRow(selectedRow);
         table.repaint();
     }
