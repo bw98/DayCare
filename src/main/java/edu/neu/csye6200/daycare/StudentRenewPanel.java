@@ -49,8 +49,7 @@ public class StudentRenewPanel {
 
         jPanel.add(deleteBtn);
 
-        // return new Item("Student Renew", jPanel);
-        return new Item("Student Renew", jPanel, new ActionListener() {
+        return new Item("Student Update", jPanel, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -188,7 +187,7 @@ public class StudentRenewPanel {
         DefaultTableModel model = new DefaultTableModel(tableData, name);
         table.setModel(model);
 
-        table.setBounds(75, 0, 800, 180);
+        table.setBounds(75, 0, 1500, 180);
 
         JScrollPane jsp = new JScrollPane(table);
         jsp.setBounds(50, 0, 850, 185);

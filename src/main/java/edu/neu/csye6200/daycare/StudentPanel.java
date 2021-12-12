@@ -84,6 +84,6 @@ public class StudentPanel {
 		
 		jPanel.add(registerButton);
 		
-		return new Item("Student register", jPanel);
+		return new Item("Student Register", jPanel);
 	}
 }

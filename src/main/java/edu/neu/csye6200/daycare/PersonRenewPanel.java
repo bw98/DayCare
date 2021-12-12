@@ -31,7 +31,7 @@ public class PersonRenewPanel extends JPanel{
 	private Students ss;
 	private int renew_period=100;
 	public Item toItem() {
-		return new Item("renew_person", this,new ActionListener() {
+		return new Item("Student Check In", this,new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

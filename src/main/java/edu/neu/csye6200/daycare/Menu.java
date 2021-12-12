@@ -60,7 +60,7 @@ public class Menu {
 		
 		jFrame.add(btnPanel, BorderLayout.NORTH);
 		jFrame.add(mJPanel, BorderLayout.CENTER);
-		jFrame.setSize(1000, 800);
+		jFrame.setSize(1800, 800);
 		jFrame.setVisible(true);
 	}
 }

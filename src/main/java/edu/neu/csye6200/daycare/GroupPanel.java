@@ -133,7 +133,7 @@ public class GroupPanel {
                 }
             });
 
-        return new Item("Group", jPanel);
+        return new Item("Group Assignment", jPanel);
 
     }
 

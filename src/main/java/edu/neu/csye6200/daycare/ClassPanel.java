@@ -76,7 +76,7 @@ public class ClassPanel {
 	        jTable.setBounds(300, 100, 600, 700);
 	        jPanel.add(jsp);
 
-	        return new Item("Classroom", jPanel);
+	        return new Item("Classroom Assignment", jPanel);
 
 	 }
 }

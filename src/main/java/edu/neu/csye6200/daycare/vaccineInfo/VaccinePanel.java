@@ -25,7 +25,7 @@ public class VaccinePanel{
     private DefaultTableModel model;
 
     public Item toItem(){
-        return new Item("Vaccine", VaccinePanel.getPanel());
+        return new Item("Vaccine Center", VaccinePanel.getPanel());
     }
 
     public VaccinePanel(){
