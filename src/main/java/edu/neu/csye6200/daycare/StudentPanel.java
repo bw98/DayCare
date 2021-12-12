@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -74,6 +75,7 @@ public class StudentPanel {
 				for (JTextField field: fields) {
 					field.setText("");
 				}
+				JOptionPane.showMessageDialog(null, "Register successful");
 			}
 			
 		});

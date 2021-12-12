@@ -76,19 +76,19 @@ public class Student extends Person implements Comparable<Student> {
 		try {
 			id = Integer.parseInt(tokens.get(0));
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		
 		try {
 			age = Integer.parseInt(tokens.get(1));
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		
 		try {
 			gpa = Double.parseDouble(tokens.get(2));
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		
 		try {
