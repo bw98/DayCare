@@ -1,17 +1,20 @@
-1,55,3.5,2021-01-01 00:11:00,2021-09-08 00:00:00,tump,joe,Ann,Stanley,303-200-8133,40 NW Golf Drive Emporia KS 66801
+1,55,3.5,2021-01-01 00:11:00,2021-09-08 00:00:00,Dennis,Teri,Ann,Stanley,303-200-8133,40 NW Golf Drive Emporia KS 66801
 2,27,3.6,2021-02-01 12:11:00,2021-12-11 20:33:00,Xiao,Huanlin,Ming,Cheng,401-203-8780,9220 Essex Rd Forest Hills NY 11375
 3,35,4.2,2021-01-11 14:22:00,2021-12-11 22:41:00,Wood,Derek,Water,Tom,216-215-9074,941 San Juan Rd Lockport NY 14094
 4,31,4.0,2021-03-08 16:17:00,2021-09-08 00:00:00,Trump,Donald,Anne,Mary,215-205-9746,436 Swanson St Orange TX 77630
 5,66,2.5,2021-01-21 06:43:00,2021-09-08 00:00:00,Derek,Jose,Dan,Joe,314-200-0075,6 S. Wild Horse Ave Houston TX 77040
-6,26,3.1,2000-01-01 00:00:00,2000-01-01 00:00:00,Jack,Jones,James,Jerry,123-456-7890,out of space
-7,70,1.0,2010-10-10 00:00:00,2010-10-10 00:00:00,Ryane,Richard,Eason,Tim,098-765-4321,on Earth
-8,7,3.2,2021-01-01 00:11:00,2021-09-08 00:00:00,Curry,Steph,Dell,Curry,303-200-8133,SF CA
-9,50,3.8,2021-01-01 00:11:00,2021-09-08 00:00:00,Jordan,Michael,Jordan,Michael,303-200-8133,NC
-10,38,3.0,2021-01-01 00:11:00,2021-09-08 00:00:00,James,Lebron,unknown,unknown,123-456-7890,LA CA
-11,25,3.4,2021-12-11 22:52:00,2021-12-11 22:52:00,anxi,liu,liu,anxi,339-333-4444,Boston
-12,33,3.3,2021-12-11 22:54:00,1969-12-31 19:00:00,wang,tiantian,wang,didi,333-444-6666,china
-13,35,3.4,2021-12-11 22:55:00,1969-12-31 19:00:00,jdid,dddd,ssss,dddd,33949483333,china
-14,55,3.8,2021-12-11 22:56:00,1969-12-31 19:00:00,dhudu,ssdd,ffff,ssss,34443334433,china
-19,8,3.3,2021-12-12 14:55:00,1969-12-31 19:00:00,bfff,fff,dddf,ffff,3302937272,malden
-5555,100,2.3,2021-12-12 15:23:00,1969-12-31 19:00:00,www,aaaa,qqqq,aaa,34443233222,Melrose
-55555,88,3.4,2021-12-12 15:25:00,1969-12-31 19:00:00,liu,anxi,liu,anxi,33928476283,MA
+6,26,3.1,2020-01-01 00:00:00,2000-01-01 00:00:00,Jack,Jones,James,Jerry,123-456-7890,380 Meadowbrook Drive Flushing NY 11354
+7,70,1.0,2018-10-10 00:00:00,2010-10-10 00:00:00,Ryane,Richard,Ryane,Tim,098-765-4321,32 Applegate Road Morrisville PA 19067
+8,110,3.2,2015-02-11 15:11:00,2021-09-08 00:00:00,Curry,Steph,Curry,Rodgers,303-200-8133,85 San Pablo St. Pelham AL 35124
+9,44,3.1,2019-11-22 23:01:00,2021-09-08 00:00:00,Jordan,Michael,Jordan,Michael,303-701-5686,86 West Nichols St. Rapid City SD 57701
+10,28,3.0,2020-04-12 20:11:00,2021-09-08 00:00:00,James,Lebron,James,Johnson,856-479-1339,8651 N. Constitution Road Dubuque IA 52001
+11,40,3.4,2019-05-04 22:52:00,2021-12-11 22:52:00,Poole,Joey,Poole,Jerome,803-323-7891,6 Livingston St. Kalispell MT 59901
+12,7,3.3,2021-06-11 21:54:00,1969-12-31 19:00:00,Perkins,John,Perkins,Spencer,347-915-3599,120 Pacific Dr. New Berlin WI 53151
+13,9,3.4,2021-11-11 07:35:00,1969-12-31 19:00:00,Tayyib,Ina,Tayyib,Hope,936-298-1630,708 South Pheasant Street Oklahoma City OK 73112
+14,99,3.0,2017-02-11 08:56:00,1969-12-31 19:00:00,Figueroa,Catherine,Figueroa,Denise,985-398-2683,777 Fifth Street Mocksville NC 27028
+15,42,2.8,2021-03-11 10:56:00,1969-12-31 19:00:00,Elliott,Jorge,Elliott,Samantha,303-258-0417,593 Meadowbrook Road Aiken SC 29803
+16,120,3.8,2015-09-11 12:3:00,1969-12-31 19:00:00,Singleton,Tina,Singleton,Kevin,787-870-1247,62 Primrose Street Monroe Township NJ 08831
+17,23,2.4,2020-08-11 04:20:00,1969-12-31 19:00:00,Ellis,Andrew,Ellis,Lewis,406-259-9330,7738 Lakewood Dr. Havertown PA 19083
+18,74,3.2,2019-10-11 09:36:00,1969-12-31 19:00:00,Curtis,Debra,Curtis,Marcos,281-739-7604,236 Santa Clara St. Smyrna GA 30080
+19,11,3.4,2021-06-12 14:25:00,1969-12-31 19:00:00,Holt,Rhonda,Holt,Isaac,864-367-4968,5 Gartner Street Olympia WA 98512
+20,39,3.1,2021-11-12 16:55:00,1969-12-31 19:00:00,Kelly,Heidi,Kelly,Frances,907-389-4576,76 Bay Meadows St. Burlington MA 01803
