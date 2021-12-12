@@ -132,8 +132,8 @@ public class Teacher extends Person implements Comparable<Teacher>{
 			}
 		}
 		
-		String lastName = tokens.get(5);
-		String firstName = tokens.get(6);
+		String lastName = tokens.get(6);
+		String firstName = tokens.get(5);
 		
 		try {
 			classRoomNum = Integer.parseInt(tokens.get(10));
