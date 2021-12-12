@@ -8,6 +8,14 @@ public class GroupRule extends AbstGroupRule{
 	private Map<Integer, List<Group>> groupMap;
 	private Map<Integer, Group> groups;
 
+	public Map<Integer, Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Map<Integer, Group> groups) {
+		this.groups = groups;
+	}
+
 	public Map<Integer, List<Group>> getGroupMap() {
 		return groupMap;
 	}
