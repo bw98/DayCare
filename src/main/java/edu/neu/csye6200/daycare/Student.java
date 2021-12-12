@@ -53,7 +53,7 @@ public class Student extends Person implements Comparable<Student> {
 		}
 	}
 	public Student(int studentId, int age, double gpa, Date registerDate, Date renewDate, String firstName, String lastName, String parentFirstName, String parentLastName, String phone, String address) {
-		super(age, firstName, lastName, registerDate, renewDate);
+		super(age, lastName, firstName, registerDate, renewDate);
 		this.setParentFirstName(parentFirstName);
 		this.setParentLastName(parentLastName);
 		this.studentId = studentId;

@@ -1,5 +1,6 @@
 package edu.neu.csye6200.daycare;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
 import java.io.FileReader;
@@ -39,38 +40,30 @@ public class Students extends AbstStudents{
 	}
 	
 	public static Students parseStudents(String csvFile) {
-		FileReader fr=null;
+
+		String CSVString = "";
+		String thisLine = null;
+
 		try {
-			fr=new FileReader(csvFile);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("Please check your csv file!");
-			return null;
-			// TODO: handle exception
-		}
-		FileUtil reader=new FileUtil(fr);
-		Students ss=new Students();
-		String line=null;
-		AbstractPersonFactory sFactory=new StudentFactory();
-		try {
-			while((line=reader.readLine())!=null) {
-				ss.add((Student)sFactory.getObject(line));
+			FileReader fr = new FileReader(csvFile);
+			BufferedReader br = new BufferedReader(fr);
+			while((thisLine = br.readLine()) != null) {
+				CSVString += thisLine + "\n";
 			}
+			br.close();
+
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("File error. Line is: " + line);
-		}
-		
-		try {
-			reader.close();
-		} catch (Exception e) {
-			// TODO: handle exception
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		Students ss = new Students();
+        String[] arrayOfString = CSVString.split("\n");
+		for (String string : arrayOfString) {
+			List<String> list= Arrays.asList(string.split(","));
+			ss.add(Student.parseStudentFromString(list));
+		}
+
 		return ss;
-		
 	}
 	
 	public static List<Person> asList(Students ss){
