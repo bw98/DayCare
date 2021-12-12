@@ -49,16 +49,18 @@ public class StudentRenewPanel {
 
         jPanel.add(deleteBtn);
 
-        return new Item("Student Renew", jPanel);
-//        return new Item("Student Renew", jPanel, new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//				toItem();
-//			}
-//
-//        });
+        // return new Item("Student Renew", jPanel);
+        return new Item("Student Renew", jPanel, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+                readStudentsCSV();
+                updateTable();
+
+			}
+
+        });
     }
 
     private void readStudentsCSV() {
@@ -188,6 +190,63 @@ public class StudentRenewPanel {
 
         table.setBounds(75, 0, 800, 180);
         jPanel.add(table);
+    }
+
+    private void updateTable() {
+        String[] name = {"studentId", "age", "firstName", "lastName", "registerTime",
+                "renewDate", "gpa", "phone", "address", "parentFirstName", "parentLastName"};
+        SimpleDateFormat timeFt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        int row = 1 + students.size();  // 鏍囬 + 鎵�鏈夊璞℃暟鎹�
+        int col = name.length;
+
+        Object[][] tableData = new Object[row][col];
+
+        for (int i = 0; i < name.length; i++) {
+            tableData[0][i] = name[i];
+        }
+
+        for (int i = 1; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                Student stu = students.get(i - 1);
+                if (name[j].equals("studentId")) {
+                    tableData[i][j] = stu.getStudentId();
+                } else if (name[j].equals("age")) {
+                    tableData[i][j] = stu.getAge();
+                } else if (name[j].equals("firstName")) {
+                    tableData[i][j] = stu.getFirstName();
+                } else if (name[j].equals("lastName")) {
+                    tableData[i][j] = stu.getLastName();
+                } else if (name[j].equals("registerTime")) {
+                    tableData[i][j] = timeFt.format(stu.getRegisterTime());
+                } else if (name[j].equals("renewDate")) {
+                    String renewDateStr = timeFt.format(stu.getRenewDate());
+                    String defaultRenewDateStr = timeFt.format(new Date(0));
+                    if (renewDateStr.equals(defaultRenewDateStr)) {
+                        tableData[i][j] = "";
+                    } else {
+                        tableData[i][j] = renewDateStr;
+                    }
+                } else if (name[j].equals("gpa")) {
+                    tableData[i][j] = stu.getGpa();
+                } else if (name[j].equals("phone")) {
+                    tableData[i][j] = stu.getPhone();
+                } else if (name[j].equals("address")) {
+                    tableData[i][j] = stu.getAddress();
+                } else if (name[j].equals("parentFirstName")) {
+                    tableData[i][j] = stu.getParentFirstName();
+                } else if (name[j].equals("parentLastName")) {
+                    tableData[i][j] = stu.getParentLastName();
+                }
+            }
+        }
+
+        // table = new JTable(tableData, name);
+        DefaultTableModel model = new DefaultTableModel(tableData, name);
+        table.setModel(model);
+
+        // table.setBounds(75, 0, 800, 180);
+        // jPanel.add(table);
     }
 
     private void setInputLabelsAndFields() {
