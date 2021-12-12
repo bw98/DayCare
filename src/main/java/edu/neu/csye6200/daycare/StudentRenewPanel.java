@@ -49,15 +49,16 @@ public class StudentRenewPanel {
 
         jPanel.add(deleteBtn);
 
-        return new Item("Student Renew", jPanel, new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				toItem();
-			}
-        	
-        });
+        return new Item("Student Renew", jPanel);
+//        return new Item("Student Renew", jPanel, new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				toItem();
+//			}
+//
+//        });
     }
 
     private void readStudentsCSV() {
