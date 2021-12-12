@@ -5,14 +5,15 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 
 public class ClassPanel {
-
-	 public Item toItem() {
+	GroupRule rule;
+	public Item toItem() {
 	        JPanel jPanel = new JPanel();
 	        jPanel.setLayout(null);
 	        JButton generateButton = new JButton("Generate Classrooms");
@@ -20,7 +21,7 @@ public class ClassPanel {
 	        JButton showButton = new JButton("Show Classrooms");
 	        showButton.setBounds(30,100,200,50);
 
-	        GroupRule rule = new GroupRule();
+	        rule = new GroupRule();
 	        ClassRoomRule cr = new ClassRoomRule(rule);
 	        generateButton.addActionListener(new ActionListener() {
 	            @Override
@@ -37,11 +38,10 @@ public class ClassPanel {
 	            }
 	        });
 	        
-	        System.out.println(rule.getGroups().toString());
 	        
 	        DefaultTableModel model = new DefaultTableModel();
 	        model.setColumnCount(5);
-	        String[] colName = new String[]{"Room ID", "Room Capacity", "Current Room Size", "Groups", "Level"};
+	        String[] colName = new String[]{"Room ID", "Room Capacity", "Current Room Size", "Groups ID", "Max Group Capacity"};
 	        model.setColumnIdentifiers(colName);
 	        showButton.addActionListener(new ActionListener() {
 	            @Override
@@ -49,11 +49,17 @@ public class ClassPanel {
 	            	model.setRowCount(0);
 	                model.setColumnIdentifiers(colName);
 	                for(Entry<Integer, ClassRoom> c : cr.getClassrooms().entrySet()) {
+	                	List<Group> gl = c.getValue().getGroups();
+	                	String gids = "";
+	                	for(Group g : gl) {
+	                		gids = gids + g.getGroupId() + " ";
+	                	}
 	            		model.addRow(new String[] {
 	            				String.valueOf(c.getValue().getCid()),
 	            				String.valueOf(c.getValue().getCapacity()),
 	            				String.valueOf(c.getValue().getSize()),
-	            				String.valueOf(c.getValue().getGroups()),
+//	            				String.valueOf(c.getValue().getGroups()),
+	            				String.valueOf(gids),
 	            				String.valueOf(c.getValue().getLevel())
 	            		});
 	            	}
