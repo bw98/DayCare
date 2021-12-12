@@ -136,7 +136,7 @@ public class VaccinePanel{
         }
         Vaccine cur = VaccineFactory.getVaccine(vaccine);
         // System.out.println(cur.getName());
-        s.getImmuRecord().get(cur).add(s.getAge()*12);
+        s.getImmuRecord().get(cur).add(s.getAge());
         try(BufferedReader inLine = new BufferedReader(new FileReader(file));){
             String in = null;
             while((in = inLine.readLine()) != null) {
@@ -150,7 +150,7 @@ public class VaccinePanel{
             e.printStackTrace();
         }
         List<String> lines = Files.readAllLines(file.toPath());
-        String newLine = lines.get(row) + "," + vaccine + "," + s.getAge()*12;
+        String newLine = lines.get(row) + "," + vaccine + "," + s.getAge();
         lines.set(row, newLine);
         Files.write(file.toPath(), lines);
 
