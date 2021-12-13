@@ -75,7 +75,7 @@ public class VaccinePanel{
                 for(Student s : students){
                     for(Map.Entry<Vaccine, Vector<Integer>> mp : s.getImmuRecord().entrySet()){
                         for(int month : mp.getValue()){
-                            model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getFirstName(), s.getLastName(), String.valueOf(s.getAge()), mp.getKey().getName(), String.valueOf(month/12)});
+                            model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getFirstName(), s.getLastName(), String.valueOf(s.getAge()), mp.getKey().getName(), String.valueOf(month)});
                         }
 
                     }
