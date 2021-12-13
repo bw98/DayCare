@@ -142,9 +142,9 @@ public class Student extends Person implements Comparable<Student> {
 		sBuffer.append(',');
 		sBuffer.append(s.getLastName());
 		sBuffer.append(',');
-		sBuffer.append(s.getParentLastName());
-		sBuffer.append(',');
 		sBuffer.append(s.getParentFirstName());
+		sBuffer.append(',');
+		sBuffer.append(s.getParentLastName());
 		sBuffer.append(',');
 		sBuffer.append(s.getPhone());
 		sBuffer.append(',');
