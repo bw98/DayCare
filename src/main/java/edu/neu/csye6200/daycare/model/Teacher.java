@@ -172,9 +172,9 @@ public class Teacher extends Person implements Comparable<Teacher>{
 			sBuffer.append(df.format(t.getRenewDate()));
 		}
 		sBuffer.append(',');
-		sBuffer.append(t.getLastName());
-		sBuffer.append(',');
 		sBuffer.append(t.getFirstName());
+		sBuffer.append(',');
+		sBuffer.append(t.getLastName());
 		sBuffer.append(',');
 		sBuffer.append(t.getPhone());
 		sBuffer.append(',');
