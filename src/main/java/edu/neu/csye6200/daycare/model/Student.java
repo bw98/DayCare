@@ -138,9 +138,9 @@ public class Student extends Person implements Comparable<Student> {
 			sBuffer.append(df.format(s.getRenewDate()));
 		}
 		sBuffer.append(',');
-		sBuffer.append(s.getLastName());
-		sBuffer.append(',');
 		sBuffer.append(s.getFirstName());
+		sBuffer.append(',');
+		sBuffer.append(s.getLastName());
 		sBuffer.append(',');
 		sBuffer.append(s.getParentLastName());
 		sBuffer.append(',');
