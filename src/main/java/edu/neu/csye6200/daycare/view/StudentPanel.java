@@ -25,8 +25,8 @@ public class StudentPanel {
 		jPanel.setLayout(null);
 		
 		String[] labelStrings = new String[] {
-				"Id", "Age", "Gpa", "RegisterDate", "RenewDate", "Last Name", "First Name",
-				"Parent Last Name", "Parent First Name", "Phone", "Address"
+				"Id", "Age", "Gpa", "RegisterDate", "RenewDate", "First Name", "Last Name",
+				"Parent First Name", "Parent Last Name", "Phone", "Address"
 		};
 		List<JTextField> fields = new ArrayList<>();
 		

@@ -109,14 +109,14 @@ public class Student extends Person implements Comparable<Student> {
 			}
 		}
 		
-		String lastName = tokens.get(5);
-		String firstName = tokens.get(6);
+		String lastName = tokens.get(6);
+		String firstName = tokens.get(5);
 		String parentFirstName = tokens.get(7);
 		String parentLastName = tokens.get(8);
 		String phone = tokens.get(9);
 		String address = tokens.get(10);
 		
-		return new Student(id, age, gpa, registerDate, renewDate, lastName, firstName, parentLastName, parentFirstName, phone, address);
+		return new Student(id, age, gpa, registerDate, renewDate, firstName, lastName, parentFirstName, parentLastName, phone, address);
 	}
 	
 	public static String serialize(Student s) {
