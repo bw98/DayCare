@@ -36,7 +36,6 @@ public class VaccinePanel{
         panel.setLayout(null);
         alert = new JButton("Vaccine alert");
         show = new JButton("Show vaccine record");
-
         MouseAdapter doubleClick =new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -96,7 +95,6 @@ public class VaccinePanel{
                 for(Student s : students){
                     for(Map.Entry<String, Integer> mp : VaccineNotification.getNotification(s).entrySet()){
                         model.addRow(new String[]{String.valueOf(s.getStudentId()), s.getFirstName(), s.getLastName(), String.valueOf(s.getAge()), mp.getKey(), String.valueOf(mp.getValue())});
-
                     }
                 }
 
